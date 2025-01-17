@@ -3,7 +3,8 @@ import { SessionProvider } from "next-auth/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function SignInBtn(): JSX.Element {
-  const { status, isLoading } = useSession();
+  const { status } = useSession();
+  const isLoading = status === "loading"; // Use `status` to determine loading state
 
   return (
     <div>
