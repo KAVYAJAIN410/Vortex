@@ -2,7 +2,6 @@ import mongoose, { Document, ObjectId, Schema } from "mongoose";
 
 export interface Team extends Document {
   teamName: string;
-  teamNumber?: number;
   teamCode: string;
   teamLeaderId: ObjectId;
   teamLeaderName: string;
