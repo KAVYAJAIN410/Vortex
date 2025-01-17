@@ -64,4 +64,4 @@ const TeamModel = (mongoose.models.TeamsEvent1 as mongoose.Model<Team>) || (mong
 
 export default TeamModel;
 
-mongoose.models.Users || mongoose.model<IUser>("Users", userSchema);
+
