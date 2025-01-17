@@ -19,10 +19,6 @@ const TeamSchema: Schema<Team> = new Schema(
       required: [true, "Team name is required"],
       unique: true,
     },
-    teamNumber: {
-      type: Number,
-      unique: true,
-    },
     teamCode: {
       type: String,
       required: [true, "team code is required"],
