@@ -1,8 +1,7 @@
 import { dbConnect } from "@/lib/dbConnect";
-import TeamModel, { Team } from "@/models/event1/Team.model";
+import TeamModel from "@/models/event1/Team.model";
 import TeamTokenModel from "@/models/event1/TeamToken.model";
-import { IUser, Users } from "@/models/user.model";
-import { Types } from "mongoose";
+import { Users } from "@/models/user.model";
 import { NextResponse } from "next/server";
 
 async function generateUniqueTeamCode() {

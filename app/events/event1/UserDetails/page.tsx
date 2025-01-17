@@ -32,7 +32,7 @@ export default function UserDetail() {
     regNo: "",
     number: "",
   });
-  const [errors, setErrors] = useState<Errors>({});
+
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +68,7 @@ export default function UserDetail() {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+
       Object.values(validationErrors).forEach((error) => {
         toast.error(error);
       });
@@ -95,10 +95,10 @@ export default function UserDetail() {
       const result = await response.json();
       toast.success(result.message || "Form submitted successfully!");
       setFormData({ name: "", regNo: "", number: "" });
-      setErrors({});
+
       setLoading(false);
       router.push('/')
-    } catch (error) {
+    } catch {
       setLoading(false);
       toast.error("Form submission failed: Network error");
     }

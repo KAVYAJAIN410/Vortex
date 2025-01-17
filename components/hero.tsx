@@ -4,7 +4,7 @@ import RegisterButton from "./dashboard";
 import SessionWrapper from "./SessionWrapper";
 
 const HeroSection: React.FC = () => {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   return (
     <section className="relative flex flex-col items-center justify-center min-h-[100svh] bg-cover bg-center">

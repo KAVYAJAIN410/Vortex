@@ -12,7 +12,8 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Email is missing' }, { status: 400 });
         }
 
-        let user = await Users.findOne({ email });
+        const user = await Users.findOne({ email });
+        
 
         if (!user) {
             return NextResponse.json({ message: "User not found" }, { status: 404 });

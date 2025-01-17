@@ -4,17 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 
 import SessionWrapper from "./SessionWrapper";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 //import { useMotionValue, useMotionValueEvent, useScroll } from "framer-motion";
 import hamburgerIcon from "/assets/hamburger.jpg"; // Path to hamburger image
 import closeIcon from "/assets/close.jpg"; // Path to close image
-import { Session } from "inspector/promises";
 
 const Navbar: React.FC = () => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false); // State to control mobile menu
-  const [visible, setVisible] = useState<boolean>(true);
+  const visible=true;
   //const { scrollYProgress } = useScroll(); 
   const heroSectionRef = useRef<HTMLDivElement | null>(null);
   const timelineRef = useRef<HTMLDivElement | null>(null);
@@ -46,14 +45,7 @@ const Navbar: React.FC = () => {
     };
   }, [isMenuOpen]);
 
-  const handleLoginClick = () => {
-    if (status === "authenticated") {
-      router.push('/');
-      signOut();
-    } else {
-      signIn('google'); // Redirect to login if not logged in
-    }
-  };
+  
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen); // Toggle between open and close

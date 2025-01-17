@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { dbConnect } from "@/lib/dbConnect";
 import TeamModel from "@/models/event1/Team.model";
 import { Users } from "@/models/user.model";
-import mongoose from "mongoose";
+
 
 export async function POST(req: Request) {
   try {

@@ -1,6 +1,6 @@
 "use client";
 
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useCallback } from "react";
 import LoadingIcons from "react-loading-icons";
@@ -79,10 +79,7 @@ const RegisterButton: React.FC = () => {
   }, [details, router]);
 
   // Handle unauthenticated button click
-  const handleUnauthenticatedClick = () => {
-    setShowMessage(true);
-    setTimeout(() => setShowMessage(false), 3000); // Hide the message after 3 seconds
-  };
+
 
   return (
     <div>

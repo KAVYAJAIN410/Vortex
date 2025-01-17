@@ -43,7 +43,7 @@ export async function PATCH(request: Request): Promise<NextResponse<ApiResponse>
     await user.save();
 
     return NextResponse.json({ success: true, message: "User left successfully" }, { status: 200 });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ success: false, message: "User could not leave the team" }, { status: 500 });
   }
 }

@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { MyModal, ChangeLeaderModal } from "@/components/Modal";
+import { MyModal } from "@/components/Modal";
 import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -43,7 +43,7 @@ export default function Page() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalMemberId, setModalMemberId] = useState<number | null>(null);
   const [modalType, setModalType] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(true);
+  
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -69,7 +69,7 @@ export default function Page() {
       if (data?.user?.hasFilledDetails) {
         if (data?.user?.event1TeamId) {
           if (data?.user?.event1TeamRole === 0) {
-            setLoading(false);
+         
           } else {
             router.push("/memberDashboard");
           }
@@ -79,7 +79,7 @@ export default function Page() {
       } else {
         router.push("/");
       }
-    } catch (error) {
+    } catch {
       toast.error("An error occurred while fetching user data.");
     }
   };
@@ -99,7 +99,7 @@ export default function Page() {
       setTeamCode(userData?.team?.teamCode); // Assuming this data comes from API
       setTeamMembers(userData?.members);
       console.log('DHKAJHDJKAHDKHKDHE',userData);
-    } catch (error) {
+    } catch {
       toast.error("An error occurred while fetching data.");
     }
   };
@@ -134,7 +134,7 @@ export default function Page() {
       } else {
         toast.error("Failed to remove team member.");
       }
-    } catch (error) {
+    } catch {
       toast.error("An error occurred while removing the team member.");
     }
     handleCloseModal();
@@ -158,7 +158,7 @@ export default function Page() {
       } else {
         toast.error("Failed to delete the team.");
       }
-    } catch (error) {
+    } catch  {
       toast.error("An error occurred while deleting the team.");
     }
     handleCloseModal();

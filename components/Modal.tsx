@@ -50,7 +50,7 @@ interface ChangeLeaderModalProps {
   onConfirm: (selectedMemberIndex: number | null) => void;
 }
 
-const ChangeLeaderModal: FC<ChangeLeaderModalProps> = ({ isOpen, onClose, members, onConfirm }) => {
+const ChangeLeaderModal: FC<ChangeLeaderModalProps> = ({ isOpen, onClose, members }) => {
   // Store the selected member's index
   const [selectedMemberIndex, setSelectedMemberIndex] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -83,7 +83,7 @@ const ChangeLeaderModal: FC<ChangeLeaderModalProps> = ({ isOpen, onClose, member
         toast.error("New Leader can't be assigned");
         setLoading(false);
       }
-    } catch (error) {
+    } catch  {
       toast.error("An error occurred while fetching team name.");
       setLoading(false);
     }

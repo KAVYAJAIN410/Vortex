@@ -100,11 +100,20 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
         { status: 200 }
       );
     }
-  } catch (err: any) {
-    console.log(err);
-    return NextResponse.json(
-      { message: "error", error: err.message },
-      { status: 500 }
-    );
-  }
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+        console.log(err);
+        return NextResponse.json(
+            { message: "error", error: err.message },
+            { status: 500 }
+        );
+    } else {
+        console.log("An unknown error occurred");
+        return NextResponse.json(
+            { message: "error", error: "Unknown error" },
+            { status: 500 }
+        );
+    }
+}
+
 }

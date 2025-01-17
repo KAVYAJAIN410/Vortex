@@ -4,7 +4,6 @@ import { OAuth2Client, LoginTicket } from 'google-auth-library';
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import { JWT } from 'next-auth/jwt';
-import { NextResponse } from 'next/server';
 
 import { UserToken } from "@/models/usertoken";
 import jwt from "jsonwebtoken";
