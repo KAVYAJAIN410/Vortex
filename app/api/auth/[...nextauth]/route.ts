@@ -18,7 +18,9 @@ interface Tokens {
   refreshToken: string;
 }
 
-export async function generateTokens(user: User): Promise<Tokens> {
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID as string);
+
+const generateTokens = async (user: User): Promise<Tokens> => {
   try {
     const payload = {
       _id: user._id,
@@ -43,11 +45,7 @@ export async function generateTokens(user: User): Promise<Tokens> {
   } catch (err) {
     throw err;
   }
-}
-
-
-// OAuth2Client instance
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID as string);
+};
 
 // Extend the NextAuth types
 declare module 'next-auth' {
@@ -81,7 +79,6 @@ interface Account {
   expires_at?: number;
 }
 
-// Define the gettokenfrombackend function
 const gettokenfrombackend = async (user: any, account: Account): Promise<string> => {
   await dbConnect();
   const token = account.id_token;
