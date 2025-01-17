@@ -2,6 +2,7 @@ import mongoose, { Document, ObjectId, Schema } from "mongoose";
 
 export interface Team extends Document {
   teamName: string;
+  teamNumber?:Number;
   teamCode: string;
   teamLeaderId: ObjectId;
   teamLeaderName: string;
@@ -17,6 +18,9 @@ const TeamSchema: Schema<Team> = new Schema(
       type: String,
       required: [true, "Team name is required"],
       unique: true,
+    },
+    teamNumber: {
+      type: Number,
     },
     teamCode: {
       type: String,
