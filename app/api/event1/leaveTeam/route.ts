@@ -1,10 +1,9 @@
 import { dbConnect } from "@/lib/dbConnect";
 import TeamModel, { Team } from "@/models/event1/Team.model";
 import { Users } from "@/models/user.model";
-import { ApiResponse } from "@/types/ApiResponse";
 import { NextResponse } from "next/server";
 
-export async function PATCH(request: Request): Promise<NextResponse<ApiResponse>> {
+export async function PATCH(request: Request) {
   await dbConnect();
 
   try {

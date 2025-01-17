@@ -2,10 +2,9 @@ import { dbConnect } from "@/lib/dbConnect";
 import TeamModel, { Team } from "@/models/event1/Team.model";
 import TeamTokenModel from "@/models/event1/TeamToken.model";
 import { Users } from "@/models/user.model";
-import { ApiResponse } from "@/types/ApiResponse";
 import { NextResponse } from "next/server";
 
-export async function DELETE(request: Request): Promise<NextResponse<ApiResponse>> {
+export async function DELETE(request: Request) {
   await dbConnect();
 
   try {

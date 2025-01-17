@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
 
 type TeamMember = {
-  id: number;
+  _id: number;
   name: string;
   regNo: string;
   mobNo: string;
@@ -20,7 +20,7 @@ export default function Page() {
   const { data: session, status } = useSession();
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([
     {
-      id: 1,
+      _id: 1,
       name: "Full Name 1",
       regNo: "2XXXXXXXX",
       mobNo: "XXXXXXXXXX",
@@ -29,7 +29,7 @@ export default function Page() {
       avatarUrl: "https://randomuser.me/api/portraits/women/32.jpg", // Example avatar URL
     },
     {
-      id: 2,
+      _id: 2,
       name: "Full Name 2",
       regNo: "2XXXXXXXX",
       mobNo: "XXXXXXXXXX",
@@ -130,7 +130,7 @@ export default function Page() {
 
       if (response.ok) {
         toast.success("Team member removed successfully");
-        setTeamMembers((prev) => prev.filter((member) => member.id !== memberId));
+        setTeamMembers((prev) => prev.filter((member) => member._id !== memberId));
       } else {
         toast.error("Failed to remove team member.");
       }
@@ -191,7 +191,7 @@ export default function Page() {
   <h2 className="text-2xl font-bold mb-4">Team Members</h2>
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
     {teamMembers.map((member) => (
-      <div key={member.id} className="bg-gradient-to-r from-[#141B2B] to-[#1E293B] rounded-lg p-6 shadow-xl flex flex-col items-center">
+      <div key={member._id} className="bg-gradient-to-r from-[#141B2B] to-[#1E293B] rounded-lg p-6 shadow-xl flex flex-col items-center">
         {/* Cool Vector Avatar */}
         <div className="w-24 h-24 mb-4 flex items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
           {/* Unisex abstract vector shape */}
