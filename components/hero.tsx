@@ -13,7 +13,7 @@ const HeroSection: React.FC = () => {
       </h6>
       <div className="flex flex-col justify-center items-center w-full text-center mt-4">
         <h1 className="esummit uppercase text-4xl md:text-6xl lg:text-9xl font-bold">
-          Battle Bot Workshop&apos;25
+          Design The Duel
         </h1>
       </div>
       <div className="w-full flex font-poppins flex-col items-center justify-between gap-6 mt-6">
