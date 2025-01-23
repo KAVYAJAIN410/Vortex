@@ -83,9 +83,10 @@ export default function Page() {
           const user = data.user;
           if (user?.hasFilledDetails === true) {
             if (user?.event1TeamId) {
-              if (user?.teamRole === 0) {
+              console.log(user)
+              if (user?.event1TeamRole === 0) {
                 setLoading(false);
-                router.push("/leaderDashboard");
+                router.push("/events/event1/leaderDashboard");
               } else {
                 setLoading(false);
               }
@@ -144,7 +145,7 @@ export default function Page() {
       <div className="bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-5 text-black pt-[12vh]">
         {loading && <LoadingScreen />}
         
-        <h1 className="text-4xl sm:text-5xl font-extrabold mb-8 text-center drop-shadow-lg">{teamName}</h1>
+        <h1 className="text-4xl sm:text-5xl font-extrabold mb-8 text-center drop-shadow-lg text-white">Team: {teamName}</h1>
   
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-screen-lg px-4">
           {teamMembers.map((member, index) => (

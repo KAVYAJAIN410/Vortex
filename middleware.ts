@@ -7,13 +7,12 @@ export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
   const path = request.nextUrl.pathname;
 
-  console.log('Path ::', path);
-  console.log('Token ::', token);
+
 
   if (token) {
-    console.log('User ::', token.user);
+    
   } else {
-    console.log('No token found');
+ 
   }
 }
 

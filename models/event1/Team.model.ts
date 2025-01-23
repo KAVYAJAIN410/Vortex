@@ -3,6 +3,7 @@ import mongoose, { Document, ObjectId, Schema } from "mongoose";
 export interface Team extends Document {
   teamName: string;
   teamNumber?:Number;
+  choice?:String;
   teamCode: string;
   teamLeaderId: ObjectId;
   teamLeaderName: string;
@@ -50,6 +51,9 @@ const TeamSchema: Schema<Team> = new Schema(
     isQualified: {
       type: Boolean,
       default: false,
+    },
+    choice:{
+       type:String
     },
     createdAt: {
       type: Date,

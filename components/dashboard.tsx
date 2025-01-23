@@ -4,6 +4,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useCallback } from "react";
 import LoadingIcons from "react-loading-icons";
+import { signIn, signOut } from "next-auth/react";
+import { stat } from "fs";
 
 interface UserDetails {
   user: {
@@ -40,6 +42,9 @@ const RegisterButton: React.FC = () => {
 
       const data: UserDetails = await res.json();
       setDetails(data);
+      if(data.user.hasFilledDetails==true){
+        setFilled(true);
+      }
     } catch (error) {
       console.error("Error fetching user info:", error);
     } finally {
@@ -53,28 +58,31 @@ const RegisterButton: React.FC = () => {
       getData();
     } else {
       setLoading(false);
+     
     }
   }, [status, getData]);
 
   // Memoized handleClick function to prevent unnecessary re-renders
   const handleClick = useCallback(() => {
     setLoading(true);
-
-    if (details?.user?.hasFilledDetails) {
-        setFilled(true)
+    if(status!="authenticated"){
+      signIn("google")
+    }
+    else{
+    if (details?.user.hasFilledDetails) {
       if (details?.user?.event1TeamId) {
         router.push(
           details.user.event1TeamRole === 0 ? "events/event1/leaderDashboard" : "/memberDashboard"
         );
       } else {
         setLoading(false);
-        router.push("/events/event1/Join_and_Create_Team");
+        router.push("/Team");
       }
     } else {
       setLoading(false);
       router.push("/events/event1/UserDetails");
     }
-
+    }
     setLoading(false);
   }, [details, router]);
 
@@ -83,9 +91,9 @@ const RegisterButton: React.FC = () => {
 
   return (
     <div>
-      {filled==true ?(
+      {filled!=true  ?(
         <button
-        className="py-2 px-4 font-semibold rounded-xl font-poppins uppercase border-4 text-white border-[#FEFAB7] bg-transparent hover:scale-105 transition-all mt-8"
+        className="py-2 px-4 font-semibold rounded-xl font-poppins uppercase border-4 text-white border-white bg-transparent hover:scale-105 transition-all mt-8"
            onClick={handleClick}
          >
            {loading ? <LoadingIcons.Oval /> : "Register"}
@@ -94,7 +102,7 @@ const RegisterButton: React.FC = () => {
       :
       (
         <button
-         className="py-2 px-4 font-semibold rounded-xl font-poppins uppercase border-4 text-white border-[#FEFAB7] bg-transparent hover:scale-105 transition-all mt-8"
+         className="py-2 px-4 font-semibold rounded-xl font-poppins uppercase border-4 text-white border-white bg-transparent hover:scale-105 transition-all mt-8"
           onClick={handleClick}
           disabled={loading} // Disable button when loading to avoid duplicate clicks
         >

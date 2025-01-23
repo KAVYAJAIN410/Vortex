@@ -97,7 +97,7 @@ export default function UserDetail() {
       setFormData({ name: "", regNo: "", number: "" });
 
       setLoading(false);
-      router.push('/')
+      router.push('/Team')
     } catch {
       setLoading(false);
       toast.error("Form submission failed: Network error");
