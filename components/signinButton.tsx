@@ -5,7 +5,6 @@ import { useState } from "react";
 
 export default function SignInBtn(): JSX.Element {
   const { status } = useSession();
-  const isLoading = status === "loading"; // Use `status` to determine the loading state
   const [isProcessing, setIsProcessing] = useState(false); // Custom loader for sign-in/out actions
 
   const handleSignIn = async () => {
@@ -28,9 +27,9 @@ export default function SignInBtn(): JSX.Element {
             <button
             style={{userSelect:"none"}}
               onClick={handleSignOut}
-              disabled={isLoading || isProcessing}
+              disabled={isProcessing}
               className={`flex items-center gap-2 ${
-                isLoading || isProcessing ? " cursor-not-allowed" : ""
+                isProcessing ? " cursor-not-allowed" : ""
               }`}
             >
               {isProcessing ? (
@@ -61,9 +60,9 @@ export default function SignInBtn(): JSX.Element {
             <button
             style={{userSelect:"none"}}
               onClick={handleSignIn}
-              disabled={isLoading || isProcessing}
+              disabled={isProcessing}
               className={`flex items-center gap-2 ${
-                isLoading || isProcessing ? "cursor-not-allowed" : ""
+                isProcessing ? "cursor-not-allowed" : ""
               }`}
             >
               {isProcessing ? (

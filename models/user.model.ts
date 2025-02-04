@@ -9,6 +9,9 @@ export interface IUser extends Document {
   event1TeamId: Types.ObjectId | null;
   hasFilledDetails: boolean;
   event1Consent: boolean;
+  hostel: "lh" | "mh" | "ds"; // Added "ds" for day scholar
+  block?: string; // Optional for day scholars
+  roomNumber?: string; // Optional for day scholars
 }
 
 const userSchema = new Schema<IUser>(
@@ -38,7 +41,6 @@ const userSchema = new Schema<IUser>(
       ref: "TeamsEvent1",
       required: false,
     },
-
     hasFilledDetails: {
       type: Boolean,
       default: false,
@@ -46,6 +48,18 @@ const userSchema = new Schema<IUser>(
     event1Consent: {
       type: Boolean,
       default: false,
+    },
+    hostel: {
+      type: String,
+    },
+    block: {
+      type: String,
+      required: false,
+    },
+    roomNumber: {
+      type: String,
+      required: false,
+      
     },
   },
   { collection: "Users" }

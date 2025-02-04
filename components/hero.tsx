@@ -9,7 +9,7 @@ const HeroSection: React.FC = () => {
   const { status } = useSession();
 
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-screen bg-cover bg-center px-6 bg-[url('/background.png')]">
+    <section className="relative flex flex-col items-center justify-center min-h-screen bg-cover bg-center px-6 bg-opacity-0">
       {/* Logo */}
       <div className="flex flex-col items-center justify-center w-full text-center mt-8">
         <Image
@@ -21,7 +21,7 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Description */}
-      <p className="mt-6 text-sm md:text-base lg:text-lg text-gray-700 text-center leading-relaxed max-w-3xl">
+      <p className="mt-6 text-sm md:text-base lg:text-lg text-center leading-relaxed max-w-2xl">
         Master the art of combat robotics in this workshop and designathon! Learn to design and build bots while exploring various advanced concepts. Test your skills in a thrilling design challenge and bring your ideas to life!
       </p>
 

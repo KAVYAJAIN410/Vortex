@@ -107,23 +107,31 @@ const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, account }) {
-      const { name, email } = user;
+      const { email, name } = user;
       if (account?.provider === 'google') {
         try {
+          // Only allow sign-in if the email ends with @vit.ac.in
+          const allowedDomain = 'vitstudent.ac.in';
+          const userDomain = email.split('@')[1];
+  
+          if (userDomain !== allowedDomain) {
+            console.error(`Domain not allowed: ${userDomain}`);
+            return false; // Reject sign-in for non-VIT email addresses
+          }
+  
           await dbConnect();
           const userExists = await Users.findOne({ email });
           if (!userExists) {
             const newUser = new Users({ name, email });
             await newUser.save();
-            return true;
           }
-          return true;
+          return true; // Allow sign-in for valid users
         } catch (error) {
           console.error(error);
-          return false;
+          return false; // Return false on error
         }
       }
-      return false;
+      return false; // Only allow Google sign-ins
     },
     async jwt({ token, user, account }) {
       const typedToken = token as JWT & {

@@ -8,19 +8,24 @@ interface FormData {
   name: string;
   regNo: string;
   number: string;
+  hostel: string; // 'lh', 'mh', or 'ds'
+  block: string;
+  roomNumber: string;
 }
 
 interface Errors {
   name?: string;
   regNo?: string;
   number?: string;
+  hostel?: string;
+  block?: string;
+  roomNumber?: string;
 }
 
 export default function UserDetail() {
   const router = useRouter();
   const { data: session, status } = useSession();
 
-  // Redirect user if not logged in, only when session status is 'authenticated'
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push('/');
@@ -31,11 +36,14 @@ export default function UserDetail() {
     name: "",
     regNo: "",
     number: "",
+    hostel: "",
+    block: "",
+    roomNumber: "",
   });
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -49,26 +57,23 @@ export default function UserDetail() {
     if (!formData.regNo) newErrors.regNo = "Registration number is required";
     else if (!/^\d{2}[A-Za-z]{3}\d{4}$/.test(formData.regNo.trim()))
       newErrors.regNo = "Invalid registration number format";
-    else if(/^\d{2}[a-z]{3}\d{4}$/.test(formData.regNo.trim()))
-      newErrors.regNo = "enter Registration Number in capital";
+    else if (/^\d{2}[a-z]{3}\d{4}$/.test(formData.regNo.trim()))
+      newErrors.regNo = "Enter Registration Number in capital letters";
     if (!formData.number) newErrors.number = "Phone number is required";
     else if (!/^\d{10}$/.test(formData.number.trim()))
       newErrors.number = "Invalid phone number format";
+    if (!formData.hostel) newErrors.hostel = "Hostel selection is required";
+    if (formData.hostel !== "ds" && !formData.block)
+      newErrors.block = "Block is required for hostel residents";
+    if (formData.hostel !== "ds" && !formData.roomNumber)
+      newErrors.roomNumber = "Room number is required for hostel residents";
     return newErrors;
-  };
- 
-  const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
-    const charCode = event.charCode;
-    if (!/^[a-zA-Z ]+$/.test(String.fromCharCode(charCode))) {
-      event.preventDefault();
-    }
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
-
       Object.values(validationErrors).forEach((error) => {
         toast.error(error);
       });
@@ -94,17 +99,16 @@ export default function UserDetail() {
 
       const result = await response.json();
       toast.success(result.message || "Form submitted successfully!");
-      setFormData({ name: "", regNo: "", number: "" });
+      setFormData({ name: "", regNo: "", number: "", hostel: "", block: "", roomNumber: "" });
 
       setLoading(false);
-      router.push('/Team')
+      router.push('/Team');
     } catch {
       setLoading(false);
       toast.error("Form submission failed: Network error");
     }
   };
 
-  // Return loading state or form based on session
   if (status === "loading") {
     return <div className="flex justify-center items-center fixed inset-0 bg-black bg-opacity-50 z-50"><div className="text-white text-2xl">Loading...</div></div>;
   }
@@ -125,19 +129,18 @@ export default function UserDetail() {
             >
               <div className="flex flex-col gap-2">
                 <input
-                  placeholder=" Full Name"
+                  placeholder="Full Name"
                   type="text"
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  onKeyPress={handleKeyPress}
                   className="border rounded-md text-2xl text-black border-gray-300 focus:ring-blue-200 focus:outline-none focus:ring-2 p-2"
                 />
               </div>
               <div className="flex flex-col gap-2">
                 <input
-                  placeholder=" Registration Number"
+                  placeholder="Registration Number"
                   type="text"
                   id="regNo"
                   name="regNo"
@@ -148,7 +151,7 @@ export default function UserDetail() {
               </div>
               <div className="flex flex-col gap-2">
                 <input
-                  placeholder=" Phone Number"
+                  placeholder="Phone Number"
                   type="tel"
                   id="number"
                   name="number"
@@ -158,6 +161,46 @@ export default function UserDetail() {
                   className="border rounded-md text-2xl text-black border-gray-300 focus:ring-blue-200 focus:outline-none focus:ring-2 p-2"
                 />
               </div>
+              <div className="flex flex-col gap-2">
+                <select
+                  id="hostel"
+                  name="hostel"
+                  value={formData.hostel}
+                  onChange={handleChange}
+                  className="border rounded-md text-2xl text-black border-gray-300 focus:ring-blue-200 focus:outline-none focus:ring-2 p-2"
+                >
+                  <option value="" disabled>Select Hostel</option>
+                  <option value="lh">Ladies Hostel</option>
+                  <option value="mh">Men's Hostel</option>
+                  <option value="ds">Day Scholar</option>
+                </select>
+              </div>
+              {formData.hostel !== "ds" && (
+                <>
+                  <div className="flex flex-col gap-2">
+                    <input
+                      placeholder="Block"
+                      type="text"
+                      id="block"
+                      name="block"
+                      value={formData.block}
+                      onChange={handleChange}
+                      className="border rounded-md text-2xl text-black border-gray-300 focus:ring-blue-200 focus:outline-none focus:ring-2 p-2"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <input
+                      placeholder="Room Number"
+                      type="text"
+                      id="roomNumber"
+                      name="roomNumber"
+                      value={formData.roomNumber}
+                      onChange={handleChange}
+                      className="border rounded-md text-2xl text-black border-gray-300 focus:ring-blue-200 focus:outline-none focus:ring-2 p-2"
+                    />
+                  </div>
+                </>
+              )}
               <button
                 type="submit"
                 className="p-2 rounded-3xl bg-gradient-to-r from-purple-500 to-blue-500 text-white text-2xl hover:text-black active:transform transition duration-200 w-full h-auto text-center"
