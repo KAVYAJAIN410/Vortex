@@ -93,7 +93,7 @@ const RegisterButton: React.FC = () => {
     <div>
       {filled!=true  ?(
         <button
-        className="py-2 px-4 font-semibold rounded-xl font-poppins uppercase border-4 text-white border-white bg-transparent hover:scale-105 transition-all mt-8"
+        className="py-2 px-4 font-semibold rounded-xl font-poppins uppercase border-4 text-white border-white bg-transparent hover:scale-105 transition-all "
            onClick={handleClick}
          >
            {loading ? <LoadingIcons.Oval /> : "Register"}
@@ -102,7 +102,7 @@ const RegisterButton: React.FC = () => {
       :
       (
         <button
-         className="py-2 px-4 font-semibold rounded-xl font-poppins uppercase border-4 text-white border-white bg-transparent hover:scale-105 transition-all mt-8"
+         className="py-2 px-4 font-semibold rounded-xl font-poppins uppercase border-4 text-white border-white bg-transparent hover:scale-105 transition-all "
           onClick={handleClick}
           disabled={loading} // Disable button when loading to avoid duplicate clicks
         >
