@@ -1,12 +1,20 @@
 "use client"; // Make this a Client Component
 import { SessionProvider } from "next-auth/react";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+
 
 export default function SignInBtn(): JSX.Element {
   const { status } = useSession();
   const [isProcessing, setIsProcessing] = useState(false); 
-
+  const [sign,setSign]=useState(false);
+  
+  useEffect(()=>{
+    if(status==="authenticated"){
+      setSign(true);
+    }
+  })
   const handleSignIn = async () => {
     setIsProcessing(true);
     await signIn("google");
@@ -17,14 +25,14 @@ export default function SignInBtn(): JSX.Element {
     setIsProcessing(true);
     await signOut();
     setIsProcessing(false);
+    
   };
-
   return (
     
       <SessionProvider>
        
         <div className="flex items-center text-white pl-4 pr-4 h-10  border-white border " style={{ borderRadius: "50px" }}>
-          {status === "authenticated" ? (
+          {sign==true ? (
             <button
             style={{userSelect:"none"}}
               onClick={handleSignOut}
