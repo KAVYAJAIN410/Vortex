@@ -21,9 +21,12 @@ export default function Page() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [teamName, setTeamName] = useState<string | null>("Your Team");
   const [teamCode, setTeamCode] = useState<string>("12345ABC");
-  const [pollActive, setPollActive] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalMemberId, setModalMemberId] = useState<number | null>(null);
+  const [modalType, setModalType] = useState<string>("");
   const [assigned, setAssigned] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [pollActive, setPollActive] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true); // Loader state
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -83,12 +86,70 @@ export default function Page() {
     } catch {
       toast.error("An error occurred while fetching data.");
     } finally {
-      setIsLoading(false);
+      setIsLoading(false); // Stop the loader once data is fetched
     }
   };
 
-  const startPoll =  () => {
-    router.push("/polling")
+  const handleShowModal = (id: number | null = null, type: string = "") => {
+    setModalMemberId(id);
+    setModalType(type);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalMemberId(null);
+    setModalType("");
+    setShowModal(false);
+  };
+
+  const handleRemove = async (memberId: number) => {
+    try {
+      const response = await fetch("/api/event1/removeMember", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.accessTokenBackend}`,
+        },
+        body: JSON.stringify({ email: session?.user?.email, memberIdToRemove: memberId }),
+      });
+
+      if (response.ok) {
+        toast.success("Team member removed successfully");
+        setTeamMembers((prev) => prev.filter((member) => member._id !== memberId));
+      } else {
+        toast.error("Failed to remove team member.");
+      }
+    } catch {
+      toast.error("An error occurred while removing the team member.");
+    }
+    handleCloseModal();
+  };
+  const startPoll = () => {
+    router.push("/polling");
+  };
+
+  const deleteTeam = async () => {
+    try {
+      const response = await fetch("/api/event1/deleteTeam", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.accessTokenBackend}`,
+        },
+        body: JSON.stringify({
+          email: session?.user?.email,
+        }),
+      });
+      if (response.ok) {
+        toast.success("Team deleted successfully");
+        router.push("/");
+      } else {
+        toast.error("Failed to delete the team.");
+      }
+    } catch {
+      toast.error("An error occurred while deleting the team.");
+    }
+    handleCloseModal();
   };
 
   return (
@@ -99,13 +160,15 @@ export default function Page() {
         </div>
       ) : (
         <>
-           <button
-              className="text-white bg-transparent border border-white rounded px-4 py-2 hover:bg-white hover:text-black transition-all w-fit"
+          {/* Header Section */}
+          <button
+              className="text-white bg-transparent border border-white rounded px-4 py-2 hover:bg-white hover:text-black transition-all w-20"
               onClick={() => router.push("/")}
             >
               Home
             </button>
           <header className="text-center">
+          
             <h1 className="text-4xl font-bold mb-2">Team: {teamName}</h1>
             <h2>Assigned bot: {assigned}</h2>
             <div className="flex flex-col items-center gap-2">
@@ -124,8 +187,6 @@ export default function Page() {
               </div>
             </div>
           </header>
-
-          {/* Poll Section */}
           <section className="text-center">
             <button
               className={`${
@@ -171,10 +232,50 @@ export default function Page() {
                   >
                     {member.event1TeamRole === 0 ? "Leader" : "Member"}
                   </span>
+                  {member.event1TeamRole !== 0 && (
+                    <button
+                      className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg mt-4"
+                      onClick={() => handleShowModal(member._id, "remove")}
+                    >
+                      Remove
+                    </button>
+                  )}
                 </div>
               ))}
             </div>
           </section>
+
+          {/* Actions Section */}
+          <section className="text-center">
+            <button
+              className="bg-red-700 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-red-800"
+              onClick={() => handleShowModal(null, "deleteTeam")}
+            >
+              Delete Team
+            </button>
+          </section>
+
+          {/* Modal */}
+          {showModal && (
+            <MyModal
+              isVisible={true}
+              onClose={handleCloseModal}
+              onConfirm={
+                modalType === "remove"
+                  ? () => handleRemove(modalMemberId!)
+                  : modalType === "leave"
+                  ? () => console.log("Leave team")
+                  : () => deleteTeam()
+              }
+              text={
+                modalType === "remove"
+                  ? "Are you sure you want to remove this member?"
+                  : modalType === "leave"
+                  ? "Are you sure you want to leave the team?"
+                  : "Are you sure you want to delete the team?"
+              }
+            />
+          )}
 
           <Toaster />
         </>
