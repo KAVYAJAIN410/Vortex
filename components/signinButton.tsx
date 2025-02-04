@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function SignInBtn(): JSX.Element {
   const { status } = useSession();
-  const [isProcessing, setIsProcessing] = useState(false); // Custom loader for sign-in/out actions
+  const [isProcessing, setIsProcessing] = useState(false); 
 
   const handleSignIn = async () => {
     setIsProcessing(true);
@@ -20,9 +20,10 @@ export default function SignInBtn(): JSX.Element {
   };
 
   return (
-    <div>
+    
       <SessionProvider>
-        <div className="flex items-center text-white pl-3 pr-3 pt-1 pb-1 border-white border" style={{ borderRadius: "100px" }}>
+       
+        <div className="flex items-center text-white pl-4 pr-4 h-10  border-white border " style={{ borderRadius: "50px" }}>
           {status === "authenticated" ? (
             <button
             style={{userSelect:"none"}}
@@ -91,7 +92,9 @@ export default function SignInBtn(): JSX.Element {
             </button>
           )}
         </div>
+       
       </SessionProvider>
-    </div>
+    
+    
   );
 }

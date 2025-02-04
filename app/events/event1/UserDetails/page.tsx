@@ -1,5 +1,5 @@
-'use client';
-import React, { useState, ChangeEvent, FormEvent, KeyboardEvent, useEffect } from "react";
+"use client";
+import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useSession } from 'next-auth/react';
 import { useRouter } from "next/navigation";
@@ -21,6 +21,9 @@ interface Errors {
   block?: string;
   roomNumber?: string;
 }
+
+const menBlocks = ["A", "B", "B-annexe", "C", "D", "D-annexe", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T"];
+const womenBlocks = ["A", "B", "C", "D", "E", "E-annexe", "F", "G", "H", "J", "RJT"];
 
 export default function UserDetail() {
   const router = useRouter();
@@ -175,31 +178,50 @@ export default function UserDetail() {
                   <option value="ds">Day Scholar</option>
                 </select>
               </div>
+              {formData.hostel === "mh" && (
+                <div className="flex flex-col gap-2">
+                  <select
+                    id="block"
+                    name="block"
+                    value={formData.block}
+                    onChange={handleChange}
+                    className="border rounded-md text-2xl text-black border-gray-300 focus:ring-blue-200 focus:outline-none focus:ring-2 p-2"
+                  >
+                    <option value="" disabled>Select Block</option>
+                    {menBlocks.map((block) => (
+                      <option key={block} value={block}>{block}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
+              {formData.hostel === "lh" && (
+                <div className="flex flex-col gap-2">
+                  <select
+                    id="block"
+                    name="block"
+                    value={formData.block}
+                    onChange={handleChange}
+                    className="border rounded-md text-2xl text-black border-gray-300 focus:ring-blue-200 focus:outline-none focus:ring-2 p-2"
+                  >
+                    <option value="" disabled>Select Block</option>
+                    {womenBlocks.map((block) => (
+                      <option key={block} value={block}>{block}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
               {formData.hostel !== "ds" && (
-                <>
-                  <div className="flex flex-col gap-2">
-                    <input
-                      placeholder="Block"
-                      type="text"
-                      id="block"
-                      name="block"
-                      value={formData.block}
-                      onChange={handleChange}
-                      className="border rounded-md text-2xl text-black border-gray-300 focus:ring-blue-200 focus:outline-none focus:ring-2 p-2"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <input
-                      placeholder="Room Number"
-                      type="text"
-                      id="roomNumber"
-                      name="roomNumber"
-                      value={formData.roomNumber}
-                      onChange={handleChange}
-                      className="border rounded-md text-2xl text-black border-gray-300 focus:ring-blue-200 focus:outline-none focus:ring-2 p-2"
-                    />
-                  </div>
-                </>
+                <div className="flex flex-col gap-2">
+                  <input
+                    placeholder="Room Number"
+                    type="text"
+                    id="roomNumber"
+                    name="roomNumber"
+                    value={formData.roomNumber}
+                    onChange={handleChange}
+                    className="border rounded-md text-2xl text-black border-gray-300 focus:ring-blue-200 focus:outline-none focus:ring-2 p-2"
+                  />
+                </div>
               )}
               <button
                 type="submit"

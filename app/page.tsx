@@ -6,7 +6,7 @@ import HeroSection from "@/components/hero";
 export default function HomePage() {
   return (
     <>
-      <NavBar/>
+      {/* <NavBar/> */}
        <HeroSection></HeroSection>
        {/* <RegisterButton></RegisterButton>
       <Footer/> */}

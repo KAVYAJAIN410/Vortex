@@ -2,8 +2,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../assets/robo.png"
+import logo from "../assets/vit.png"
 import SessionWrapper from "./SessionWrapper";
+import forty from  "../assets/40.png"
 import { signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 //import { useMotionValue, useMotionValueEvent, useScroll } from "framer-motion";
@@ -17,12 +18,22 @@ const Navbar: React.FC = () => {
   const storyBehindRef = useRef<HTMLDivElement | null>(null);
   const footerRef = useRef<HTMLDivElement | null>(null);
   return (
-    <div className="absolute top-0 z-50">
     <div className="flex justify-between w-[100vw] p-5">
-     <Image src={logo} alt="roboVitics"></Image>
+      <div className="flex  items-center max-w-[50%]" >
+    <Image src={forty} alt="roboVitics"
+     className="w-[40%] md:w-[30%] lg:w-[20%] mr-4"
+     priority
+     ></Image>
+     <Image src={logo} alt="roboVitics"
+     className="w-[50%] md:w-[30%] lg:w-[32%]"
+     priority
+     ></Image>
+     </div>
+     <div className="items-center flex flex-col justify-center">
      <SessionWrapper></SessionWrapper>
+     </div>
     </div>
-    </div>
+    
   )
 }
 export default Navbar;

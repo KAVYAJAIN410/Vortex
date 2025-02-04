@@ -3,19 +3,27 @@ import { useSession } from "next-auth/react";
 import RegisterButton from "./dashboard";
 import SessionWrapper from "./SessionWrapper";
 import logo from "../assets/logo.png";
+import robo from "../assets/robo.png"
 import Image from "next/image";
+import Navbar from "./navbar";
 
 const HeroSection: React.FC = () => {
   const { status } = useSession();
 
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-screen bg-cover bg-center px-6 bg-opacity-0">
+    <>
+   
+    <section className="relative flex flex-col items-center max-h-screen bg-cover bg-center bg-opacity-0">
+    <Navbar></Navbar>
+<div className="relative flex flex-col items-center justify-center min-h-[80vh]">
+      <Image src={robo} alt="roboVitics"></Image>
+      <p className="font-bold">presents</p>
       {/* Logo */}
       <div className="flex flex-col items-center justify-center w-full text-center mt-8">
         <Image
           src={logo}
           alt="logo"
-          className="w-[60%] md:w-[30%] lg:w-[20%] object-contain"
+          className="w-[60%] md:w-[30%] lg:w-[40%] object-contain"
           priority
         />
       </div>
@@ -31,10 +39,11 @@ const HeroSection: React.FC = () => {
           <RegisterButton />
         
       </div>
-
+      </div>
       {/* Decorative Element */}
-
+     
     </section>
+    </>
   );
 };
 
