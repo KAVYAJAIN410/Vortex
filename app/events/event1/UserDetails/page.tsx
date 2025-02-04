@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { useSession } from 'next-auth/react';
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 interface FormData {
@@ -22,8 +22,41 @@ interface Errors {
   roomNumber?: string;
 }
 
-const menBlocks = ["A", "B", "B-annexe", "C", "D", "D-annexe", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T"];
-const womenBlocks = ["A", "B", "C", "D", "E", "E-annexe", "F", "G", "H", "J", "RJT"];
+const menBlocks = [
+  "A",
+  "B",
+  "B-annexe",
+  "C",
+  "D",
+  "D-annexe",
+  "E",
+  "F",
+  "G",
+  "H",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+];
+const womenBlocks = [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "E-annexe",
+  "F",
+  "G",
+  "H",
+  "J",
+  "RJT",
+];
 
 export default function UserDetail() {
   const router = useRouter();
@@ -31,7 +64,7 @@ export default function UserDetail() {
 
   useEffect(() => {
     if (status === "unauthenticated") {
-      router.push('/');
+      router.push("/");
     }
   }, [status, router]);
 
@@ -76,12 +109,12 @@ export default function UserDetail() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const validationErrors = validate();
+
     if (Object.keys(validationErrors).length > 0) {
-      Object.values(validationErrors).forEach((error) => {
-        toast.error(error);
-      });
+      toast.error("Please fill in all required fields correctly.");
       return;
     }
+
     try {
       setLoading(true);
       const response = await fetch("/api/register", {
@@ -102,10 +135,17 @@ export default function UserDetail() {
 
       const result = await response.json();
       toast.success(result.message || "Form submitted successfully!");
-      setFormData({ name: "", regNo: "", number: "", hostel: "", block: "", roomNumber: "" });
+      setFormData({
+        name: "",
+        regNo: "",
+        number: "",
+        hostel: "",
+        block: "",
+        roomNumber: "",
+      });
 
       setLoading(false);
-      router.push('/Team');
+      router.push("/Team");
     } catch {
       setLoading(false);
       toast.error("Form submission failed: Network error");
@@ -113,7 +153,11 @@ export default function UserDetail() {
   };
 
   if (status === "loading") {
-    return <div className="flex justify-center items-center fixed inset-0 bg-black bg-opacity-50 z-50"><div className="text-white text-2xl">Loading...</div></div>;
+    return (
+      <div className="flex justify-center items-center fixed inset-0 bg-black bg-opacity-50 z-50">
+        <div className="text-white text-2xl">Loading...</div>
+      </div>
+    );
   }
 
   return (
@@ -172,7 +216,9 @@ export default function UserDetail() {
                   onChange={handleChange}
                   className="border rounded-md text-2xl text-black border-gray-300 focus:ring-blue-200 focus:outline-none focus:ring-2 p-2"
                 >
-                  <option value="" disabled>Select Hostel</option>
+                  <option value="" disabled>
+                    Select Hostel
+                  </option>
                   <option value="lh">Ladies Hostel</option>
                   <option value="mh">Men's Hostel</option>
                   <option value="ds">Day Scholar</option>
@@ -187,9 +233,13 @@ export default function UserDetail() {
                     onChange={handleChange}
                     className="border rounded-md text-2xl text-black border-gray-300 focus:ring-blue-200 focus:outline-none focus:ring-2 p-2"
                   >
-                    <option value="" disabled>Select Block</option>
+                    <option value="" disabled>
+                      Select Block
+                    </option>
                     {menBlocks.map((block) => (
-                      <option key={block} value={block}>{block}</option>
+                      <option key={block} value={block}>
+                        {block}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -203,9 +253,13 @@ export default function UserDetail() {
                     onChange={handleChange}
                     className="border rounded-md text-2xl text-black border-gray-300 focus:ring-blue-200 focus:outline-none focus:ring-2 p-2"
                   >
-                    <option value="" disabled>Select Block</option>
+                    <option value="" disabled>
+                      Select Block
+                    </option>
                     {womenBlocks.map((block) => (
-                      <option key={block} value={block}>{block}</option>
+                      <option key={block} value={block}>
+                        {block}
+                      </option>
                     ))}
                   </select>
                 </div>
