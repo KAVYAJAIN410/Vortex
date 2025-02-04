@@ -25,6 +25,8 @@ export async function POST(request: Request) {
     }
    
     const teamId = user.event1TeamId;
+    const teams=await TeamModel.find();
+    const size=teams.length;
     const team = await TeamModel.findById(teamId);
     if (!team) {
       return NextResponse.json({ success: false, message: "Team not found" }, { status: 400 });
@@ -34,7 +36,11 @@ export async function POST(request: Request) {
     }
     // Check if the total number of teams with the same choice is less than 20
     const choiceCount = await TeamModel.countDocuments({ choice: choice });
-    if (choiceCount >= 20) {
+    let len=size/2;
+    if(size%2!=0 && choice=="Horizontal" || (size==1 && choice=='Vertical')){
+      len=len+1;
+    }
+    if (choiceCount >= len) {
       return NextResponse.json({ success: false, message: "This choice is already filled, please select another" }, { status: 400 });
     }
 
