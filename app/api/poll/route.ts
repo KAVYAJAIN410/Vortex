@@ -23,13 +23,15 @@ export async function POST(request: Request) {
     if (user.event1TeamRole !== 0) {
       return NextResponse.json({ success: false, message: "You are not a team leader" }, { status: 400 });
     }
-
+   
     const teamId = user.event1TeamId;
     const team = await TeamModel.findById(teamId);
     if (!team) {
       return NextResponse.json({ success: false, message: "Team not found" }, { status: 400 });
     }
-
+    if(!team.poll_Active){
+      return NextResponse.json({ success: false, message: "poll not active" }, { status: 410 });
+    }
     // Check if the total number of teams with the same choice is less than 20
     const choiceCount = await TeamModel.countDocuments({ choice: choice });
     if (choiceCount >= 20) {

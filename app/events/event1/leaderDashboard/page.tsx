@@ -21,11 +21,9 @@ export default function Page() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [teamName, setTeamName] = useState<string | null>("Your Team");
   const [teamCode, setTeamCode] = useState<string>("12345ABC");
-  const [showModal, setShowModal] = useState<boolean>(false);
-  const [modalMemberId, setModalMemberId] = useState<number | null>(null);
-  const [modalType, setModalType] = useState<string>("");
+  const [pollActive, setPollActive] = useState<boolean>(false);
   const [assigned, setAssigned] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(true); // Loader state
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -81,70 +79,16 @@ export default function Page() {
       setTeamCode(userData?.team?.teamCode);
       setTeamMembers(userData?.members);
       setAssigned(userData?.team?.choice);
+      setPollActive(userData?.team?.poll_Active); // Set pollActive state
     } catch {
       toast.error("An error occurred while fetching data.");
     } finally {
-      setIsLoading(false); // Stop the loader once data is fetched
+      setIsLoading(false);
     }
   };
 
-  const handleShowModal = (id: number | null = null, type: string = "") => {
-    setModalMemberId(id);
-    setModalType(type);
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setModalMemberId(null);
-    setModalType("");
-    setShowModal(false);
-  };
-
-  const handleRemove = async (memberId: number) => {
-    try {
-      const response = await fetch("/api/event1/removeMember", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${session?.accessTokenBackend}`,
-        },
-        body: JSON.stringify({ email: session?.user?.email, memberIdToRemove: memberId }),
-      });
-
-      if (response.ok) {
-        toast.success("Team member removed successfully");
-        setTeamMembers((prev) => prev.filter((member) => member._id !== memberId));
-      } else {
-        toast.error("Failed to remove team member.");
-      }
-    } catch {
-      toast.error("An error occurred while removing the team member.");
-    }
-    handleCloseModal();
-  };
-
-  const deleteTeam = async () => {
-    try {
-      const response = await fetch("/api/event1/deleteTeam", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${session?.accessTokenBackend}`,
-        },
-        body: JSON.stringify({
-          email: session?.user?.email,
-        }),
-      });
-      if (response.ok) {
-        toast.success("Team deleted successfully");
-        router.push("/");
-      } else {
-        toast.error("Failed to delete the team.");
-      }
-    } catch {
-      toast.error("An error occurred while deleting the team.");
-    }
-    handleCloseModal();
+  const startPoll =  () => {
+    router.push("/polling")
   };
 
   return (
@@ -155,7 +99,12 @@ export default function Page() {
         </div>
       ) : (
         <>
-          {/* Header Section */}
+           <button
+              className="text-white bg-transparent border border-white rounded px-4 py-2 hover:bg-white hover:text-black transition-all w-fit"
+              onClick={() => router.push("/")}
+            >
+              Home
+            </button>
           <header className="text-center">
             <h1 className="text-4xl font-bold mb-2">Team: {teamName}</h1>
             <h2>Assigned bot: {assigned}</h2>
@@ -175,6 +124,21 @@ export default function Page() {
               </div>
             </div>
           </header>
+
+          {/* Poll Section */}
+          <section className="text-center">
+            <button
+              className={`${
+                pollActive
+                  ? "bg-blue-500 hover:bg-blue-600"
+                  : "bg-gray-500 cursor-not-allowed"
+              } text-white px-6 py-3 rounded-lg shadow-lg`}
+              onClick={startPoll}
+              disabled={!pollActive}
+            >
+              {pollActive ? "Start Poll" : "Poll not active"}
+            </button>
+          </section>
 
           {/* Team Members Section */}
           <section>
@@ -207,50 +171,10 @@ export default function Page() {
                   >
                     {member.event1TeamRole === 0 ? "Leader" : "Member"}
                   </span>
-                  {member.event1TeamRole !== 0 && (
-                    <button
-                      className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg mt-4"
-                      onClick={() => handleShowModal(member._id, "remove")}
-                    >
-                      Remove
-                    </button>
-                  )}
                 </div>
               ))}
             </div>
           </section>
-
-          {/* Actions Section */}
-          <section className="text-center">
-            <button
-              className="bg-red-700 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-red-800"
-              onClick={() => handleShowModal(null, "deleteTeam")}
-            >
-              Delete Team
-            </button>
-          </section>
-
-          {/* Modal */}
-          {showModal && (
-            <MyModal
-              isVisible={true}
-              onClose={handleCloseModal}
-              onConfirm={
-                modalType === "remove"
-                  ? () => handleRemove(modalMemberId!)
-                  : modalType === "leave"
-                  ? () => console.log("Leave team")
-                  : () => deleteTeam()
-              }
-              text={
-                modalType === "remove"
-                  ? "Are you sure you want to remove this member?"
-                  : modalType === "leave"
-                  ? "Are you sure you want to leave the team?"
-                  : "Are you sure you want to delete the team?"
-              }
-            />
-          )}
 
           <Toaster />
         </>

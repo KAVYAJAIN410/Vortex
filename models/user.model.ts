@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document, Types } from "mongoose";
+import { boolean } from "zod";
 
 export interface IUser extends Document {
   email: string;
@@ -13,6 +14,7 @@ export interface IUser extends Document {
   block?: string; // Optional for day scholars
   roomNumber?: string; // Optional for day scholars
 }
+
 
 const userSchema = new Schema<IUser>(
   {
@@ -61,6 +63,7 @@ const userSchema = new Schema<IUser>(
       required: false,
       
     },
+
   },
   { collection: "Users" }
 );

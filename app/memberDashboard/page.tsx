@@ -6,7 +6,6 @@ import LoadingScreen from '@/components/LoadingScreen';
 import { MyModal } from '@/components/Modal';
 import toast, { Toaster } from 'react-hot-toast';
 
-
 interface TeamMember {
   id: number;
   name: string;
@@ -144,6 +143,14 @@ export default function Page() {
     return (
       <div className="bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-5 text-black pt-[12vh]">
         {loading && <LoadingScreen />}
+
+        {/* Home Button */}
+        <button
+          onClick={() => router.push("/")}
+          className="absolute top-4 left-4 bg-transparent text-white font-bold text-lg hover:underline"
+        >
+          Home
+        </button>
         
         <h1 className="text-4xl sm:text-5xl font-extrabold mb-8 text-center drop-shadow-lg text-white">Team: {teamName}</h1>
   
@@ -183,4 +190,3 @@ export default function Page() {
       </div>
     );
   }
-  
