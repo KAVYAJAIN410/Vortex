@@ -4,8 +4,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useCallback } from "react";
 import LoadingIcons from "react-loading-icons";
-import { signIn, signOut } from "next-auth/react";
-import { stat } from "fs";
+import { signIn } from "next-auth/react";
 
 interface UserDetails {
   user: {
@@ -16,14 +15,13 @@ interface UserDetails {
 }
 
 const RegisterButton: React.FC = () => {
-    const[filled,setFilled]=useState(false);
+  const [filled, setFilled] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
   const { data: session, status } = useSession();
   const [details, setDetails] = useState<UserDetails | null>(null);
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const router = useRouter();
 
-  // Memoized getData function to avoid re-creating it on every render
   const getData = useCallback(async () => {
     try {
       setLoading(true);
@@ -31,7 +29,7 @@ const RegisterButton: React.FC = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${session?.accessTokenBackend}`, // Fix the Authorization format
+          Authorization: `Bearer ${session?.accessTokenBackend}`,
           "Access-Control-Allow-Origin": "*",
         },
       });
@@ -42,7 +40,7 @@ const RegisterButton: React.FC = () => {
 
       const data: UserDetails = await res.json();
       setDetails(data);
-      if(data.user.hasFilledDetails==true){
+      if (data.user.hasFilledDetails) {
         setFilled(true);
       }
     } catch (error) {
@@ -52,61 +50,61 @@ const RegisterButton: React.FC = () => {
     }
   }, [session]);
 
-  // Fetch data when the session is authenticated
   useEffect(() => {
     if (status === "authenticated") {
       getData();
     } else {
       setLoading(false);
-     
     }
   }, [status, getData]);
 
-  // Memoized handleClick function to prevent unnecessary re-renders
   const handleClick = useCallback(() => {
     setLoading(true);
-    if(status!="authenticated"){
-      signIn("google")
-    }
-    else{
-    if (details?.user.hasFilledDetails) {
-      if (details?.user?.event1TeamId) {
-        router.push(
-          details.user.event1TeamRole === 0 ? "events/event1/leaderDashboard" : "/memberDashboard"
-        );
-      } else {
-        setLoading(false);
-        router.push("/Team");
-      }
+    if (status !== "authenticated") {
+      signIn("google");
     } else {
-      setLoading(false);
-      router.push("/events/event1/UserDetails");
-    }
+      if (details?.user.hasFilledDetails) {
+        if (details?.user?.event1TeamId) {
+          router.push(
+            details.user.event1TeamRole === 0
+              ? "/events/event1/leaderDashboard"
+              : "/memberDashboard"
+          );
+        } else {
+          router.push("/Team");
+        }
+      } else {
+        router.push("/events/event1/UserDetails");
+      }
     }
     setLoading(false);
-  }, [details, router]);
-
-  // Handle unauthenticated button click
-
+  }, [details, router, status]);
 
   return (
     <div>
-      {filled!=true  ?(
+      {status !== "authenticated" ? (
         <button
-        className="py-2 px-4 font-semibold rounded-xl font-poppins uppercase border-4 text-white border-white bg-transparent hover:scale-105 transition-all "
-           onClick={handleClick}
-         >
-           {loading ? <LoadingIcons.Oval /> : "Register"}
-         </button>
-      )
-      :
-      (
-        <button
-         className="py-2 px-4 font-semibold rounded-xl font-poppins uppercase border-4 text-white border-white bg-transparent hover:scale-105 transition-all "
+          className="py-2 px-4 font-semibold rounded-xl font-poppins uppercase border-4 text-white border-white bg-transparent hover:scale-105 transition-all"
           onClick={handleClick}
-          disabled={loading} // Disable button when loading to avoid duplicate clicks
+          disabled={loading}
+        >
+          {loading ? <LoadingIcons.Oval /> : "Login"}
+        </button>
+      ) : filled ? (
+        <button
+          className="py-2 px-4 font-semibold rounded-xl font-poppins uppercase border-4 text-white border-white bg-transparent hover:scale-105 transition-all"
+          onClick={handleClick}
+          disabled={loading}
         >
           {loading ? <LoadingIcons.Oval /> : "Dashboard"}
+        </button>
+      ) : (
+        <button
+          className="py-2 px-4 font-semibold rounded-xl font-poppins uppercase border-4 text-white border-white bg-transparent hover:scale-105 transition-all"
+          onClick={handleClick}
+          disabled={loading}
+        >
+          {loading ? <LoadingIcons.Oval /> : "Register"}
         </button>
       )}
 
