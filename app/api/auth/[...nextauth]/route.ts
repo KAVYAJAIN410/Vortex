@@ -103,6 +103,12 @@ const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      authorization: {
+        params: {
+          hd: "vitstudent.ac.in", // Restrict to VIT domain
+          prompt: "select_account", // Ensure the account selection screen is shown
+        }
+      }
     }),
   ],
   callbacks: {
