@@ -14,7 +14,7 @@ const HeroSection: React.FC = () => {
   return (
     <>
    
-    <section className="relative flex flex-col items-center min-h-[1000px] bg-cover bg-center bg-opacity-0">
+    <section className="relative flex flex-col items-center min-h-fit bg-cover bg-center bg-opacity-0">
     <Navbar></Navbar>
 <div className="relative flex flex-col items-center justify-center min-h-[80vh]">
   <Image src={yantra} alt="yantra"
