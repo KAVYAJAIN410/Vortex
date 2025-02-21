@@ -20,7 +20,7 @@
     "console": "^0.7.2",
     "emailjs": "^4.0.3",
     "framer": "^2.4.1",
-    "framer-motion": "^12.4.3",
+    "framer-motion": "^10.18.0",
     "google-auth-library": "^9.15.0",
     "install": "^0.13.0",
     "jsonwebtoken": "^9.0.2",
