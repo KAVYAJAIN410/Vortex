@@ -193,8 +193,14 @@ const authOptions: NextAuthOptions = {
         error: null,
         idToken: null,
       };
+      
     },
+    async redirect({ url, baseUrl }) {
+      return "/events/event1/UserDetails";
+    },
+    
   },
+  
 };
 
 // Function to refresh the token

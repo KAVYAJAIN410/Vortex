@@ -31,7 +31,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }
 
     // Check if the team has already reached the member limit
-    if (team.teamMembers.length >= 4) {  //throwinng error with '==='
+    if (team.teamMembers.length >= 5) {  //throwinng error with '==='
       return NextResponse.json(
         { message: "You cannot add more members to the team." },
         { status: 400 }

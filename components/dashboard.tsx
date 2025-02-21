@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useCallback } from "react";
 import LoadingIcons from "react-loading-icons";
+import { HoverBorderGradient } from "./ui/hover-border-gradient";
 import { signIn } from "next-auth/react";
 
 interface UserDetails {
@@ -81,30 +82,31 @@ const RegisterButton: React.FC = () => {
   }, [details, router, status]);
 
   return (
-    <div>
+    <div className="text-2xl z-50" >
       {status !== "authenticated" ? (
         <button
-          className="py-2 px-4 font-semibold rounded-xl font-poppins uppercase border-4 text-white border-white bg-transparent hover:scale-105 transition-all"
-          onClick={handleClick}
+        className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
+        onClick={handleClick}
           disabled={loading}
         >
-          {loading ? <LoadingIcons.Oval /> : "Login"}
+          
+          {loading ? <LoadingIcons.Oval /> : "Sign In"}
         </button>
       ) : filled ? (
         <button
-          className="py-2 px-4 font-semibold rounded-xl font-poppins uppercase border-4 text-white border-white bg-transparent hover:scale-105 transition-all"
-          onClick={handleClick}
+        className="hover:text- hover:bg-transparent hover:shadow-sm  text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
+        onClick={handleClick}
           disabled={loading}
         >
           {loading ? <LoadingIcons.Oval /> : "Dashboard"}
         </button>
       ) : (
         <button
-          className="py-2 px-4 font-semibold rounded-xl font-poppins uppercase border-4 text-white border-white bg-transparent hover:scale-105 transition-all"
+         className="hover:text- hover:bg-transparent hover:shadow-sm text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
           onClick={handleClick}
-          disabled={loading}
+         
         >
-          {loading ? <LoadingIcons.Oval /> : "Register"}
+          {loading ? <LoadingIcons.Oval /> : "Register Now"}
         </button>
       )}
 

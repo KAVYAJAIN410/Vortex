@@ -44,13 +44,13 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       // Fetch user details from the database
       const user = await Users.findById(userId) as User | null;
       if (!user) {
-        return NextResponse.json({ message: "User not found" }, { status: 404 });
+        return NextResponse.json({ message: "User not found" }, { status: 401 });
       }
 
       // Fetch the team based on the user's teamId
       const team = await TeamModel.findById(user.event1TeamId) as Team | null;
       if (!team) {
-        return NextResponse.json({ message: "Team not found" }, { status: 404 });
+        return NextResponse.json({ message: "Team not found" }, { status: 402 });
       }
 
       const teamMembers = team.teamMembers;
@@ -75,13 +75,13 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       // Fetch user details from the database
       const user = await Users.findById(userId) as User | null;
       if (!user) {
-        return NextResponse.json({ message: "User not found" }, { status: 404 });
+        return NextResponse.json({ message: "User not found" }, { status: 406 });
       }
 
       // Fetch the team based on the user's teamId
       const team = await TeamModel.findById(user.event1TeamId) as Team | null;
       if (!team) {
-        return NextResponse.json({ message: "Team not found" }, { status: 404 });
+        return NextResponse.json({ message: "Team not found" }, { status: 403 });
       }
 
       const teamMembers = team.teamMembers;

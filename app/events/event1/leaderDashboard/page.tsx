@@ -153,7 +153,7 @@ export default function Page() {
   };
 
   return (
-    <div className="bg-gradient-to-b from-[#0F172A] to-[#1E293B] min-h-screen text-white p-6 flex flex-col gap-8">
+    <div className="bg-gradient-to-b bg-neutral-800 min-h-screen text-white p-6 flex flex-col gap-8">
       {isLoading ? (
         <div className="flex justify-center items-center min-h-screen">
           <div className="loader border-t-4 border-b-4 border-white rounded-full w-16 h-16 animate-spin"></div>
@@ -170,7 +170,6 @@ export default function Page() {
           <header className="text-center">
           
             <h1 className="text-4xl font-bold mb-2">Team: {teamName}</h1>
-            <h2>Assigned bot: {assigned}</h2>
             <div className="flex flex-col items-center gap-2">
               <p className="text-sm text-gray-400">Team Code</p>
               <div className="flex justify-center items-center gap-4">
@@ -188,7 +187,7 @@ export default function Page() {
             </div>
           </header>
           <section className="text-center">
-            <button
+            {/* <button
               className={`${
                 pollActive
                   ? "bg-blue-500 hover:bg-blue-600"
@@ -198,7 +197,7 @@ export default function Page() {
               disabled={!pollActive}
             >
               {pollActive ? "Start Poll" : "Poll not active"}
-            </button>
+            </button> */}
           </section>
 
           {/* Team Members Section */}
@@ -248,7 +247,7 @@ export default function Page() {
           {/* Actions Section */}
           <section className="text-center">
             <button
-              className="bg-red-700 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-red-800"
+              className="bg-orange-800 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-orange-700"
               onClick={() => handleShowModal(null, "deleteTeam")}
             >
               Delete Team

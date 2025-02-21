@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap');
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -18,7 +21,41 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-  background-image: url('/background.png');
+  /* background-image: url('/background.png'); */
   background-size: cover;
+  background-color: white;
   background-repeat: no-repeat;
+}
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("/fonts/Pricedown.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MyCustomFont2";
+  src: url("/fonts/KodeMono.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'BrigendsExpanded';
+  src: url('/fonts/BrigendsExpanded.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+.glass-nav {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* Blur effect */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+  
+}
+
+.glass-nav a {
+  color: white;
+  text-decoration: none;
+}
+
+.glass-nav a:hover {
+  color: #ccc; /* Light gray on hover */
 }

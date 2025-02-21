@@ -161,7 +161,7 @@ export default function UserDetail() {
   }
 
   return (
-    <div className="bg-cover bg-center bg-no-repeat">
+    <div className="bg-cover bg-center bg-no-repeat bg-neutral-900">
       {loading && (
         <div className="flex justify-center items-center fixed inset-0 bg-black bg-opacity-50 z-50">
           <div className="text-white text-2xl">Loading...</div>

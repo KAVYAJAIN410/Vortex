@@ -80,10 +80,10 @@ export default function Page() {
   };
 
   return (
-    <main className="h-screen w-screen flex items-center justify-center bg-gray-900">
-      <div className="bg-gray-800 text-white p-8 rounded-md shadow-lg w-full max-w-lg">
+    <main className="h-screen w-screen flex items-center justify-center bg-neutral-900 ">
+      <div className="bg-neutral-800 text-white p-8 rounded-md shadow-lg w-full max-w-lg">
         <Toaster />
-        <h1 className="text-center text-2xl font-bold mb-8">Join or Create a Team</h1>
+        <h1 className="text-center text-2xl font-bold mb-8 font-[BrigendsExpanded]">Join or Create a Team</h1>
 
         {/* Join Team Form */}
         <form onSubmit={handleTeamCodeSubmit} className="mb-6">
@@ -102,7 +102,7 @@ export default function Page() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full p-2 rounded bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold transition-transform ${
+            className={`w-full p-2 rounded bg-gradient-to-r font-[BrigendsExpanded] bg-[#FF6B00]  text-white font-bold transition-transform ${
               loading ? "opacity-50 cursor-not-allowed" : "hover:scale-105"
             }`}
           >
@@ -129,7 +129,7 @@ export default function Page() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full p-2 rounded bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold transition-transform ${
+            className={`w-full p-2 font-[BrigendsExpanded] rounded bg-gradient-to-r bg-[#FF6B00] text-white font-bold transition-transform ${
               loading ? "opacity-50 cursor-not-allowed" : "hover:scale-105"
             }`}
           >
