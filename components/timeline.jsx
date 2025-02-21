@@ -1,11 +1,10 @@
 import VerticalTimeline  from "./VerticalTimeline";
 import VerticalTimelineElement from "./verticalTimelineElement"
 import "./style.css";
-import scheduleDetails from "./scheduleDetails";
+import scheduleDetails from "./ScheduleDetails.js";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import bg from "@/assets/Noise & Texture.png"
-import RegisterButton from "@/components/dashboard";
+
 
 const Timeline = () => {
   const [loader, setLoader] = useState(false);
