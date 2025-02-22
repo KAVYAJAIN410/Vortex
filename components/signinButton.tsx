@@ -37,7 +37,7 @@ export default function SignInBtn(): JSX.Element {
             style={{userSelect:"none"}}
               onClick={handleSignOut}
               disabled={isProcessing}
-              className={`flex items-center gap-2 ${
+              className={`flex items-center gap-2 text-center ${
                 isProcessing ? " cursor-not-allowed" : ""
               }`}
             >
@@ -70,7 +70,7 @@ export default function SignInBtn(): JSX.Element {
             style={{userSelect:"none"}}
               onClick={handleSignIn}
               disabled={isProcessing}
-              className={`flex items-center gap-2 ${
+              className={`flex items-center gap-2 text-center  ${
                 isProcessing ? "cursor-not-allowed" : ""
               }`}
             >

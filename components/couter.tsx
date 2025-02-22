@@ -62,7 +62,7 @@ export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
             >
               {formatNumber(time.value)}
             </div>
-            <span className="text-xs mt-1 uppercase">{time.label}</span>
+            <span className="text-xs mt-1 uppercase text-white">{time.label}</span>
           </div>
         ))}
       </div>

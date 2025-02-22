@@ -5,7 +5,7 @@ export default function Sponsors() {
   return (
     <section className="px-10 md:px-20"  style={{ fontFamily: "MyCustomFont, sans-serif" }}>
       <div className="flex items-center pt-10 pb-5 text-center mt-10 mb-10">
-        <h1 className="uppercase w-full md:w-fit text-4xl md:text-5xl lg:text-5xl font-bold bg-gradient-to-br text-white bg-clip-text text-transparent font-[BrigendsExpanded]">
+        <h1 className="uppercase w-fit md:w-fit text-4xl md:text-5xl lg:text-5xl font-bold bg-gradient-to-br text-white bg-clip-text text-transparent font-[BrigendsExpanded]">
           sponsors
         </h1>
         <div className="hidden md:block w-full">
@@ -18,9 +18,9 @@ export default function Sponsors() {
           ></motion.div>
         </div>
       </div>
-      <div className="h-fit flex justify-center ">
+      <div className=" flex justify-center ">
         <div>
-          <Image className="h-96 w-auto" alt="altium" src={autodesk}/>
+          <Image className=" md:h-96 w-auto" alt="altium" src={autodesk}/>
         </div>
       </div>
     </section>

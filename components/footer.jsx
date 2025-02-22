@@ -7,6 +7,7 @@ import { BiSolidPhoneCall } from "react-icons/bi";
 import { IoMdMail } from "react-icons/io";
 import Image from "next/image";
 import Marq from "./Marq";
+import robo from "@/assets/robo.png"
 import bg from "@/assets/footer.png"
 
 export const Footer = () => {
@@ -25,7 +26,7 @@ export const Footer = () => {
             <p className="text-lg font-semibold m-0">community</p>
             <div className="flex flex-col gap-2">
               <Link
-                href={""}
+                href={"https://www.instagram.com/robovitics/?hl=en"}
                 target="blank"
                 className="flex gap-2 items-center text-2xl"
               >
@@ -33,7 +34,7 @@ export const Footer = () => {
                 <p className="text-sm">Instagram</p>
               </Link>
               <Link
-                href={""}
+                href={"https://twitter.com/robovitics"}
                 target="blank"
                 className="flex gap-2 items-center text-2xl"
               >
@@ -41,7 +42,7 @@ export const Footer = () => {
                 <p className="text-sm">Twitter</p>
               </Link>
               <Link
-                href={""}
+                href={"https://www.linkedin.com/company/robovitics?originalSubdomain=in"}
                 target="blank"
                 className="flex gap-2 items-center text-2xl"
               >
@@ -49,7 +50,7 @@ export const Footer = () => {
                 <p className="text-sm">Linkedin</p>
               </Link>
               <Link
-                href={""}
+                href={"https://www.facebook.com/robovitics/"}
                 target="blank"
                 className="flex gap-2 items-center text-2xl"
               >
@@ -61,7 +62,7 @@ export const Footer = () => {
         </div>
         <div className="flex flex-col gap-4 text-center z-50">
           <div>
-            <h1 className="text-5xl sm:text-7xl font-bold">RoboVitics</h1>
+             <Image src={robo} alt=""></Image>
             <p className="font-semibold"></p>
           </div>
           <div>
@@ -82,7 +83,7 @@ export const Footer = () => {
                 <span>
                   <IoMdMail />
                 </span>
-                RoboViticsl@vit.ac.in
+                RoboVITics@vit.ac.in
               </Link>
             </div>
           </div>

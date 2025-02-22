@@ -98,13 +98,15 @@ const Tracks = () => {
             >
               <div className="bg-black rounded-xl w-72 h-72">
                 {/* Header Bar */}
-                <div className="bg-gray-700 text-left p-2 flex justify-between items-center rounded-t-lg">
-                  <span className="font-bold text-md">TRACK NAME</span>
+                <div className="flex justify-center">
+                <div className="font-[GreaterTheory] text-left p-2 flex justify-center items-center h-fit w-fit">
+                  <span className="font-bold text-md">{track.name}</span>
                   
+                </div>
                 </div>
                 <div className="p-4">
                   {/* Content */}
-                  <div className="p-2 text-xs leading-5 text-gray-300">
+                  <div className="p-2 text-xs leading-5 text-gray-300 font-[PoppinsRegular]">
                     {track.content}
                   </div>
                   {/* Footer */}
@@ -134,13 +136,16 @@ const Tracks = () => {
                 >
                   <div className="bg-black rounded-xl w-72 h-72 mx-auto">
                     {/* Header Bar */}
-                    <div className="bg-gray-600 text-left p-2 flex justify-between items-center rounded-t-lg">
-                      <span className="font-bold text-xs">TRACK NAME</span>
-                      <IoMdClose className="text-red-500" />
+                    <div className="flex justify-center">
+                <div className="font-[GreaterTheory] text-left p-2 flex justify-center items-center h-fit w-fit">
+                  <span className="font-bold text-md">{track.name}</span>
+                  
+                </div>
+                     
                     </div>
                     <div className="p-4">
                       {/* Content */}
-                      <div className="p-2 text-xs leading-5 text-gray-300">
+                      <div className="p-2 text-xs leading-5 text-gray-300 font-[PoppinsRegular]">
                         {track.content}
                       </div>
                       {/* Footer */}

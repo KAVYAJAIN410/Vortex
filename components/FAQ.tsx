@@ -34,34 +34,35 @@ const FaqContent = () => {
   };
 
   return (
-    <section className="py-16 px-6 md:px-20 bg-gradient-to-b mt-4 z-10  items-center m-14"
-    id="FAQ"
-   >
-      <h2 className="text-4xl md:text-5xl font-extrabold text-center text-white font-[BrigendsExpanded]">
+    <section
+      id="faq" 
+      className="py-10 px-6 md:px-20  z-10"
+    >
+      <h2 className="text-4xl md:text-5xl d text-center text-transparent bg-gradient-to-b from-[#FF6B00] via-[#ec6217] to-[#f74a0b] bg-clip-text font-[GreaterTheory]">
         FAQ
       </h2>
 
-      <div className="mt-10 flex flex-col lg:flex-row lg:justify-between gap-6 items-center">
+      <div className="mt-10 flex flex-col lg:flex-row lg:justify-between gap-2">
         {[faqs.slice(0, Math.ceil(faqs.length / 2)), faqs.slice(Math.ceil(faqs.length / 2))].map((faqGroup, index) => (
-          <div key={index} className="flex flex-col gap-4 w-full lg:w-[48%]">
+          <div key={index} className="flex flex-col gap-3 w-full lg:w-[48%] ">
             {faqGroup.map((faq) => (
               <div 
                 key={faq.id} 
-                className="bg-white font-bold rounded-lg shadow-md border border-transparent hover:border-black transition-all duration-300"
+                className="bg-[#FF6B00] font-bold h-15 w-30 rounded-lg shadow-md border border-transparent hover:border-white transition-all duration-3300"
               >
                 <button
-                  className="w-full flex justify-between items-center py-4 px-6 text-left text-lg font-semibold text-[#14110E]"
+                  className="w-full flex justify-between items-center py-2 px-6 text-left  text-sm font-[PoppinsRegular] text-white"
                   onClick={() => toggleDropdown(faq.id)}
                 >
                   {faq.q}
-                  <span className="text-2xl">{visibleFaq === faq.id ? "x" : "+"}</span>
+                  <span className="text-2xl ">{visibleFaq === faq.id ? "x" : "+"}</span>
                 </button>
                 <div
-                  className={`transition-all duration-300 ease-in-out overflow-scroll ${
-                    visibleFaq === faq.id ? "max-h-40 opacity-100 p-6" : "max-h-0 opacity-0"
+                  className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                    visibleFaq === faq.id ? "opacity-100 p-6" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <p className="text-[#6F6C66] text-base">{faq.ans}</p>
+                  <p className="text-white text-base font-[PoppinsRegular]">{faq.ans}</p>
                 </div>
               </div>
             ))}
