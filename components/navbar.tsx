@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
       >
         <div className="flex items-center justify-between w-full z-50 max-w-screen">
           <a href="https://robovitics.in/" target="_blank" rel="noopener noreferrer">
-          <Image src={robo} alt="roboVITics"></Image>
+          <Image src={robo} alt="roboVITics" className='h-8 md:h-12 w-auto'></Image>
           </a>
           <button className="md:hidden text-2xl text-white" onClick={() => setIsOpen(!isOpen)}>
             ☰
