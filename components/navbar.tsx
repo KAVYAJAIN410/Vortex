@@ -28,14 +28,14 @@ const Navbar: React.FC = () => {
   }, [controls]);
 
   return (
-    <div id="home" className="fixed top-0 z-[1000] left-0 right-0">
+    <div id="home" className="fixed top-0 z-[1000] left-0 right-0 max-w-screen">
 
       <motion.nav
-       className="w-full flex items-center justify-between p-4 glass-nav z-50"
+       className="w-full flex items-center justify-between p-4 glass-nav z-50 max-w-screen"
 
         ref={ref}
       >
-        <div className="flex items-center justify-between w-full z-50">
+        <div className="flex items-center justify-between w-full z-50 max-w-screen">
           <a href="https://robovitics.in/" target="_blank" rel="noopener noreferrer">
           </a>
           <button className="md:hidden text-2xl text-white" onClick={() => setIsOpen(!isOpen)}>

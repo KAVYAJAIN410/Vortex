@@ -38,7 +38,7 @@ const FaqContent = () => {
     id="FAQ"
    >
       <h2 className="text-4xl md:text-5xl font-extrabold text-center text-white font-[BrigendsExpanded]">
-        FREQUENTLY ASKED QUESTIONS
+        FAQ
       </h2>
 
       <div className="mt-10 flex flex-col lg:flex-row lg:justify-between gap-6 items-center">
