@@ -12,7 +12,7 @@ import bg from "@/assets/footer.png"
 export const Footer = () => {
   return (
     <>
-      <footer className="relative flex flex-col-reverse md:flex-row bg-[url('/assets/bg.png')] bg-cover items-center gap-10 md:gap-0 px-5 sm:px-10 ms:px-20 justify-between py-5 text-white z-50">
+      <footer className="relative flex flex-col-reverse md:flex-row bg-[url('/assets/bg.png')] bg-cover items-center gap-10 md:gap-0 px-5 sm:px-10 ms:px-20 justify-between py-5 text-white z-50" id="footer">
       <Image
         src={bg}
         alt="background"

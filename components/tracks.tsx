@@ -61,7 +61,7 @@ const Tracks = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center" >
+    <div className="flex flex-col justify-center" id="tracks" >
       
       <div
         className="min-h-screen bg-[#FF6B00] flex flex-col justify-center items-center p-10 relative"

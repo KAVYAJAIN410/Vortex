@@ -195,9 +195,15 @@ const authOptions: NextAuthOptions = {
       };
       
     },
-    async redirect({ url, baseUrl }) {
-      return "/events/event1/UserDetails";
-    },
+   async redirect({ url, baseUrl }) {
+  if (url === baseUrl || url === `${baseUrl}/api/auth/signout`) {
+    // If user is signing out, redirect to home or another page
+    return baseUrl;
+  }
+  
+  // Redirect to the desired page only after sign-in
+  return "/events/event1/UserDetails";
+}
     
   },
   

@@ -16,6 +16,18 @@
     --foreground: #ededed;
   }
 }
+@font-face {
+  font-family: 'PoppinsRegular';
+  src: url('/fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GreaterTheory';
+  src: url('/fonts/GreaterTheory.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
   color: var(--foreground);

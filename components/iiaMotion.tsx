@@ -2,7 +2,7 @@
 import React, {useEffect, useState } from "react";
 import Image from "next/image";
 export default function IdeateComponent({ onComplete }: { onComplete: () => void }) {
-  const texts = ["We", "Are", "Back"];
+  const texts = ["Unleash", "The", "Mettle"];
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [cycleCount, setCycleCount] = useState(0);
   const maxCycles = 1; 

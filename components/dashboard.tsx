@@ -62,7 +62,7 @@ const RegisterButton: React.FC = () => {
   const handleClick = useCallback(() => {
     setLoading(true);
     if (status !== "authenticated") {
-      signIn("google");
+      signIn("google",{ callbackUrl: "/events/event1/UserDetails" });
     } else {
       if (details?.user.hasFilledDetails) {
         if (details?.user?.event1TeamId) {
@@ -82,7 +82,7 @@ const RegisterButton: React.FC = () => {
   }, [details, router, status]);
 
   return (
-    <div className="text-2xl z-50" >
+    <div className="text-2xl z-[1000]" >
       {status !== "authenticated" ? (
         <button
         className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
@@ -104,6 +104,7 @@ const RegisterButton: React.FC = () => {
         <button
          className="hover:text- hover:bg-transparent hover:shadow-sm text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
           onClick={handleClick}
+          disabled={loading}
          
         >
           {loading ? <LoadingIcons.Oval /> : "Register Now"}

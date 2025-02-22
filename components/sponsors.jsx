@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
-import autodesk from "@/assets/sponsor.png"
+import autodesk from "@/assets/autodesk.gif"
 export default function Sponsors() {
   return (
-    <section className="px-10 md:px-20  mb-24"  style={{ fontFamily: "MyCustomFont, sans-serif" }}>
+    <section className="px-10 md:px-20"  style={{ fontFamily: "MyCustomFont, sans-serif" }}>
       <div className="flex items-center pt-10 pb-5 text-center mt-10 mb-10">
         <h1 className="uppercase w-full md:w-fit text-4xl md:text-5xl lg:text-5xl font-bold bg-gradient-to-br text-white bg-clip-text text-transparent font-[BrigendsExpanded]">
           sponsors
@@ -20,7 +20,7 @@ export default function Sponsors() {
       </div>
       <div className="h-fit flex justify-center ">
         <div>
-          <Image className="h-24 w-auto" alt="altium" src={autodesk}/>
+          <Image className="h-96 w-auto" alt="altium" src={autodesk}/>
         </div>
       </div>
     </section>

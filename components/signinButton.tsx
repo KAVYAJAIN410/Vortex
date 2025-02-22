@@ -17,13 +17,13 @@ export default function SignInBtn(): JSX.Element {
   })
   const handleSignIn = async () => {
     setIsProcessing(true);
-    await signIn("google");
+    await signIn("google",{ callbackUrl: "/events/event1/UserDetails" });
     setIsProcessing(false);
   };
 
   const handleSignOut = async () => {
     setIsProcessing(true);
-    await signOut();
+    await signOut({ callbackUrl: "/" });
     setIsProcessing(false);
     
   };

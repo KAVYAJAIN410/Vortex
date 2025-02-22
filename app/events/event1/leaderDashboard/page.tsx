@@ -4,6 +4,10 @@ import { useRouter } from "next/navigation";
 import { MyModal } from "@/components/Modal";
 import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
+import picture from "../../../../assets/member.png"
+import bg from "@/assets/Noise & Texture.png"
+
+import Image from "next/image";
 
 type TeamMember = {
   _id: number;
@@ -66,6 +70,7 @@ export default function Page() {
       toast.error("An error occurred while fetching user data.");
     }
   };
+  
 
   const getData = async () => {
     try {
@@ -101,6 +106,15 @@ export default function Page() {
     setModalType("");
     setShowModal(false);
   };
+  const handleCopyTeamCode = async () => {
+    try {
+      await navigator.clipboard.writeText(teamCode);
+      toast.success("Team code copied to clipboard!");
+      handleCloseModal();
+    } catch (error) {
+      toast.error("Failed to copy team code.");
+    }
+  };
 
   const handleRemove = async (memberId: number) => {
     try {
@@ -129,7 +143,9 @@ export default function Page() {
   };
 
   const deleteTeam = async () => {
+    setIsLoading(true);
     try {
+      setIsLoading(true);
       const response = await fetch("/api/event1/deleteTeam", {
         method: "DELETE",
         headers: {
@@ -153,7 +169,7 @@ export default function Page() {
   };
 
   return (
-    <div className="bg-gradient-to-b bg-neutral-800 min-h-screen text-white p-6 flex flex-col gap-8">
+    <div className="bg-gradient-to-b bg-neutral-900 min-h-screen text-white p-6 flex flex-col gap-8 relative">
       {isLoading ? (
         <div className="flex justify-center items-center min-h-screen">
           <div className="loader border-t-4 border-b-4 border-white rounded-full w-16 h-16 animate-spin"></div>
@@ -169,22 +185,8 @@ export default function Page() {
             </button>
           <header className="text-center">
           
-            <h1 className="text-4xl font-bold mb-2">Team: {teamName}</h1>
-            <div className="flex flex-col items-center gap-2">
-              <p className="text-sm text-gray-400">Team Code</p>
-              <div className="flex justify-center items-center gap-4">
-                <span className="bg-[#334155] px-4 py-2 rounded font-mono text-sm">{teamCode}</span>
-                <button
-                  className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
-                  onClick={() => {
-                    navigator.clipboard.writeText(teamCode);
-                    toast.success("Team code copied to clipboard!");
-                  }}
-                >
-                  Copy
-                </button>
-              </div>
-            </div>
+            <h1 className="text-4xl font-bold mb-2 font-[GreaterTheory]">Team: {teamName||"team name not found"}</h1>
+       
           </header>
           <section className="text-center">
             {/* <button
@@ -202,60 +204,81 @@ export default function Page() {
 
           {/* Team Members Section */}
           <section>
-            <h2 className="text-2xl font-bold mb-4">Team Members</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+              
               {teamMembers.map((member) => (
-                <div
-                  key={member._id}
-                  className="bg-gradient-to-r from-[#141B2B] to-[#1E293B] rounded-lg p-6 shadow-xl flex flex-col items-center"
-                >
-                  <div className="w-24 h-24 mb-4 flex items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
-                    <svg
-                      width="48"
-                      height="48"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="white"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle cx="12" cy="8" r="3" />
-                      <path d="M5 19c0-3 3-5 7-5s7 2 7 5H5z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-semibold">{member.name}</h3>
-                  <p className="text-sm text-gray-400">Reg. No.: {member.regNo}</p>
-                  <p className="text-sm text-gray-400">Mobile: {member.mobNo}</p>
-                  <span
-                    className={`px-3 py-1 text-sm font-medium mt-2 rounded-full ${
-                      member.event1TeamRole === 0 ? "bg-green-600" : "bg-gray-600"
-                    }`}
-                  >
-                    {member.event1TeamRole === 0 ? "Leader" : "Member"}
-                  </span>
-                  {member.event1TeamRole !== 0 && (
-                    <button
-                      className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg mt-4"
-                      onClick={() => handleShowModal(member._id, "remove")}
-                    >
-                      Remove
-                    </button>
-                  )}
+                 <div
+                 key={member._id}
+                 className="  rounded-lg p-3 text-center shadow-lg transform hover:scale-105 transition-transform duration-300 flex flex-row items-center justify-between space-x-4 opacity-100 bg-white text-black"
+                //  style={{ backgroundImage: `url(${background.src})` }}
+               >
+                  
+                  <div className="relative z-10 flex-1 p-4 text-left">
+                      <h2 className="text-xl font-bold font-[PoppinsRegular] mb-1 ">
+                        {member.name}
+                      </h2>
+                      <p className="text-xs mb-1 = ">
+                        Reg. No: {member.regNo}
+                      </p>
+                      <p className="text-xs mb-2 ">
+                        Mobile No: {member.mobNo}
+                      </p>
+                      <h1 className="text-lg font-bold mb-1 font-[PoppinsRegular] ">
+                        {member.event1TeamRole === 0 ? "LEADER" : "MEMBER"}
+                      </h1>
+                      {member.event1TeamRole !== 0 && (
+                        <button
+                          className="mt-3 btn-secondary bg-red-700  px-4 py-2 rounded-md  hover:scale-105 transition-transform"
+                          onClick={() => handleShowModal(member._id, "remove")}
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
+                    <div className="absolute right-0 top-0 w-1/2 h-full">
+                      <Image
+                        src={picture}
+                        alt={`${member.name}'s profile`}
+                        layout="fill"
+                       
+                        className="opacity-100"
+                      />
+                    </div>
                 </div>
               ))}
             </div>
           </section>
+          <div className="flex justify-center">
+         <div className="flex justify-center gap-2 absolute bottom-6"> 
+          {teamMembers.length<4 && <button
+        className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
+                onClick={()=>{
+                  setModalType("teamCode");
+      setShowModal(true);
+                }}
+              >
+                {isLoading ? (
+                  <span className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"></span>
+                ) : (
+                  "Add Member"
+                )}
+              </button>}
 
           {/* Actions Section */}
           <section className="text-center">
             <button
-              className="bg-orange-800 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-orange-700"
+             className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
               onClick={() => handleShowModal(null, "deleteTeam")}
             >
               Delete Team
             </button>
           </section>
+          </div>
+          </div>
+
 
           {/* Modal */}
-          {showModal && (
+          {showModal && modalType !== "teamCode" &&  (
             <MyModal
               isVisible={true}
               onClose={handleCloseModal}
@@ -275,10 +298,44 @@ export default function Page() {
               }
             />
           )}
+          
+
+          {showModal && modalType === "teamCode" && (
+              <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                <div className="bg-black p-8 rounded-lg shadow-lg w-96 max-w-[90vw]">
+                  <h2 className="text-2xl  mb-6 font-[GreaterTheory] text-center">
+                    Team Code
+                  </h2>
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+                    <p className="text-xl font-bold">{teamCode}</p>
+                    <button
+                      onClick={handleCopyTeamCode}
+                      className="bg-blue-700 text-white px-4 py-2 rounded-md font-[PoppinsRegular] uppercase hover:bg-blue-600 transition-colors"
+                    >
+                      Copy
+                    </button>
+                  </div>
+                  <div className="flex justify-center">
+                    <button
+                      className="bg-red-700 text-white  font-[PoppinsRegular] uppercase px-4 py-2 rounded-md"
+                      onClick={handleCloseModal}
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
 
           <Toaster />
         </>
       )}
+       <Image
+        src={bg}
+        alt="background"
+        className={`w-full h-full object-cover absolute top-0 left-0 -z-10`}
+        style={{ objectPosition: "center" }} // Ensures background centers properly
+      />
     </div>
   );
 }

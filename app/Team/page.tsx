@@ -11,10 +11,44 @@ export default function Page() {
   const [teamName, setTeamName] = useState("");
   const [loading, setLoading] = useState(false);
 
+
+  const getUserData = async () => {
+    try {
+      const res = await fetch("/api/userInfo", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.accessTokenBackend}`,
+        },
+      });
+      const data = await res.json();
+        
+      if (data?.user?.hasFilledDetails) {
+        if (data?.user?.event1TeamId) {
+          if (data?.user?.event1TeamRole === 0) {
+            router.push("/events/event1/leaderDashboard");
+          } else {
+            router.push("/memberDashboard");
+          }
+        } 
+      } else {
+        router.push("/events/event1/userDetails");
+      }
+    } catch {
+      toast.error("An error occurred while fetching user data.");
+    }
+  };
+  
+
+
+
   useEffect(() => {
+    setLoading(true);
     if (status === "unauthenticated") {
       router.push("/");
     }
+    getUserData();
+    setLoading(false);
   }, [status, router]);
 
   const handleTeamCodeSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -70,7 +104,7 @@ export default function Page() {
         const result = await response.json();
         toast.success(result.message || "Team created successfully!");
         setTeamName("");
-        router.push("/memberDashboard");
+        router.push("/events/event1/leaderDashboard");
       }
     } catch {
       toast.error("Network error occurred.");

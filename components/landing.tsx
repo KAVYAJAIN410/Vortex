@@ -67,6 +67,10 @@ export default function Hero() {
   }
   const textAnimationControls = useAnimation();
 
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  
+
   useEffect(() => {
     const handleResize = () => {
       const newWidth = window.innerWidth / 2;
@@ -165,6 +169,25 @@ export default function Hero() {
   const [ideateCompleted, setIdeateCompleted] = useState(false);
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 640); // Adjust the breakpoint as needed
+      if(window.innerWidth < 640){
+        setIsTunnelComplete(true);
+      }
+     
+    };
+
+    // Initial check
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
     let touchStartY = 0;
   
     const handleScroll = (e) => {
@@ -241,6 +264,7 @@ export default function Hero() {
           : "overflow-hidden h-screen z-0"
           
       }
+      id="home"
     >
       {!ideateCompleted && (
         <IdeateComponent onComplete={() => setIdeateCompleted(true)} />
@@ -250,11 +274,11 @@ export default function Hero() {
       <div
         className={`relative flex ${
           isTunnelComplete ? "justify-normal" : "justify-center"
-        } items-center max-h-[80%]`}
+        } items-center max-h-[80%] `}
         style={{ height: "100vh", overflow: "hidden" }}
       >
         <div
-          className="w-full h-screen opacity-75"
+          className={`w-full h-screen opacity-75 ${isSmallScreen?"hidden":"visible"}`}
           style={{
             perspective: "1500px",
             overflow: "hidden",
@@ -342,7 +366,7 @@ export default function Hero() {
         >
           <motion.div
             className={`${
-              isTunnelComplete ? "w-[100vw]  min-h-fit" : "w-[50vw] h-[50vh]"
+              isTunnelComplete ? "w-[100vw] h-[100vh] min-h-fit" : "w-[50vw] h-[50vh]"
             } flex flex-col  items-center  -z-10
                ${isTunnelComplete ? "bg-transparent" : "bg-neutral-900"}
                  ${isTunnelComplete ? "md:flex-row" : "md:flex-col"}
@@ -423,7 +447,7 @@ export default function Hero() {
       <Image
         src={bg}
         alt="background"
-        className={`w-full h-full object-cover absolute top-0 left-0 -z-10`}
+        className={`w-full h-full object-cover absolute top-0 left-0`}
         style={{ objectPosition: "center" }} // Ensures background centers properly
       />
     </div>

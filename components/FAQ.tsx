@@ -35,8 +35,9 @@ const FaqContent = () => {
 
   return (
     <section className="py-16 px-6 md:px-20 bg-gradient-to-b mt-4 z-10  items-center m-14"
+    id="FAQ"
    >
-      <h2 className="text-4xl md:text-5xl font-extrabold text-center text-white">
+      <h2 className="text-4xl md:text-5xl font-extrabold text-center text-white font-[BrigendsExpanded]">
         FREQUENTLY ASKED QUESTIONS
       </h2>
 
@@ -56,7 +57,7 @@ const FaqContent = () => {
                   <span className="text-2xl">{visibleFaq === faq.id ? "x" : "+"}</span>
                 </button>
                 <div
-                  className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                  className={`transition-all duration-300 ease-in-out overflow-scroll ${
                     visibleFaq === faq.id ? "max-h-40 opacity-100 p-6" : "max-h-0 opacity-0"
                   }`}
                 >

@@ -61,11 +61,46 @@ const womenBlocks = [
 export default function UserDetail() {
   const router = useRouter();
   const { data: session, status } = useSession();
+  const [loading, setLoading] = useState<boolean>(false);
+const [user,setUser]=useState({});
+
+
+  const getUserData = async () => {
+    try {
+      const res = await fetch("/api/userInfo", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.accessTokenBackend}`,
+        },
+      });
+      const data = await res.json();
+        
+      if (data?.user?.hasFilledDetails) {
+        if (data?.user?.event1TeamId) {
+          if (data?.user?.event1TeamRole === 0) {
+            router.push("/events/event1/leaderDashboard");
+          } else {
+            router.push("/memberDashboard");
+          }
+        } else {
+          router.push("/Team");
+        }
+      } 
+    } catch {
+      toast.error("An error occurred while fetching user data.");
+    }
+  };
+  
+
 
   useEffect(() => {
+    setLoading(true);
     if (status === "unauthenticated") {
       router.push("/");
     }
+    getUserData();
+    setLoading(false);
   }, [status, router]);
 
   const [formData, setFormData] = useState<FormData>({
@@ -77,7 +112,6 @@ export default function UserDetail() {
     roomNumber: "",
   });
 
-  const [loading, setLoading] = useState<boolean>(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -154,7 +188,7 @@ export default function UserDetail() {
 
   if (status === "loading") {
     return (
-      <div className="flex justify-center items-center fixed inset-0 bg-black bg-opacity-50 z-50">
+      <div className="flex justify-center items-center fixed inset-0 bg-black bg-opacity-100 z-50">
         <div className="text-white text-2xl">Loading...</div>
       </div>
     );
@@ -279,7 +313,7 @@ export default function UserDetail() {
               )}
               <button
                 type="submit"
-                className="p-2 rounded-3xl bg-gradient-to-r from-purple-500 to-blue-500 text-white text-2xl hover:text-black active:transform transition duration-200 w-full h-auto text-center"
+               className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
               >
                 Submit
               </button>
