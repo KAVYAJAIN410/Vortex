@@ -92,7 +92,9 @@ const gettokenfrombackend = async (user: any, account: Account): Promise<string>
     audience: process.env.GOOGLE_CLIENT_ID,
   });
 
-  const user1 = await Users.findOne({ email: email });
+  const user1: User | null = await Users.findOne({ email }).exec();
+
+
   const { accessToken, refreshToken } = await generateTokens(user1);
   return accessToken;
 };
@@ -195,15 +197,16 @@ const authOptions: NextAuthOptions = {
       };
       
     },
-   async redirect({ url, baseUrl }) {
-  if (url === baseUrl || url === `${baseUrl}/api/auth/signout`) {
-    // If user is signing out, redirect to home or another page
-    return baseUrl;
-  }
-  
-  // Redirect to the desired page only after sign-in
-  return "/events/event1/UserDetails";
-}
+    async redirect({ url, baseUrl }) {
+      if (url === baseUrl || url === `${baseUrl}/api/auth/signout`) {
+        // If user is signing out, redirect to home or another page
+        return baseUrl;
+      }
+      else{
+      // Redirect to the desired page only after sign-in
+      return "/events/event1/UserDetails";
+      }
+    }
     
   },
   
