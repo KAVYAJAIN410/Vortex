@@ -35,7 +35,7 @@ const FaqContent = () => {
 
   return (
     <section
-      id="faq" 
+      id="FAQ" 
       className="py-10 px-6 md:px-20  z-10"
     >
       <h2 className="text-4xl md:text-5xl d text-center text-transparent bg-gradient-to-b from-[#FF6B00] via-[#ec6217] to-[#f74a0b] bg-clip-text font-[GreaterTheory]">
