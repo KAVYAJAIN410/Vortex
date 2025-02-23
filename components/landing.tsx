@@ -92,7 +92,12 @@ export default function Hero() {
     );
     const renderer = new THREE.WebGLRenderer();
     renderer.setClearColor(0xffffff, 0);
-    renderer.setSize(window.innerWidth * 0.9, window.innerHeight * 0.6);
+    if(window.innerWidth < 900){
+        renderer.setSize(window.innerWidth * 0.9, window.innerHeight * 0.6);
+    }
+    else{
+    renderer.setSize(window.innerWidth * 0.4, window.innerHeight * 0.4);
+    }
     document.getElementById("three-container").appendChild(renderer.domElement);
     const loader = new GLTFLoader();
     loader.load("plain white 3d logo.gltf", (gltf) => {
