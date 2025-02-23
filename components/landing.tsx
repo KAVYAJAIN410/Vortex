@@ -92,7 +92,7 @@ export default function Hero() {
     );
     const renderer = new THREE.WebGLRenderer();
     renderer.setClearColor(0xffffff, 0);
-    renderer.setSize(window.innerWidth * 0.4, window.innerHeight * 0.4);
+    renderer.setSize(window.innerWidth * 0.9, window.innerHeight * 0.6);
     document.getElementById("three-container").appendChild(renderer.domElement);
     const loader = new GLTFLoader();
     loader.load("plain white 3d logo.gltf", (gltf) => {
@@ -101,7 +101,7 @@ export default function Hero() {
       model.rotation.y = 0;
       model.rotation.z = 0;
       if (window.innerWidth < 900) {
-        model.scale.set(18, 18, 18);
+        model.scale.set(10, 10, 10);
       } else {
         model.scale.set(33, 33, 33);
       }
