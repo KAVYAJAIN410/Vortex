@@ -11,7 +11,7 @@ export interface Team extends Document {
   teamMembers: ObjectId[];
   isQualified?: boolean;
   createdAt?: Date,
-  poll_Active:boolean
+  Round1:boolean,
 }
 
 const TeamSchema: Schema<Team> = new Schema(
@@ -53,17 +53,15 @@ const TeamSchema: Schema<Team> = new Schema(
       type: Boolean,
       default: false,
     },
-    choice:{
-       type:String
-    },
     createdAt: {
       type: Date,
       default: Date.now,
     },
-    poll_Active:{
-      type:Boolean,
-      default: false,
+    Round1:{
+      type: Boolean,
+      default: false
     }
+
   },
   { collection: "TeamsEvent1" }
 );

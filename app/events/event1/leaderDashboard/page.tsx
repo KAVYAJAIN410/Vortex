@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { MyModal } from "@/components/Modal";
 import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
-import picture from "../../../../assets/member.png"
+import picture from "../../../../assets/image2.svg"
 import bg from "@/assets/Noise & Texture.png"
 
 import Image from "next/image";

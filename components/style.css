@@ -7,7 +7,7 @@
     max-width: 1170px;
     margin: 0 auto;
     position: relative;
-    padding: 2em 0
+    padding: 1em 0
 }
 
 .vertical-timeline::after {
@@ -195,7 +195,7 @@
     margin-left: 60px;
     background: #fff;
     border-radius: .25em;
-    padding: 1em;
+    padding: 0;
     box-shadow: 0 3px 0 #ddd
 }
 
@@ -245,7 +245,7 @@
 
 .vertical-timeline-element-content .vertical-timeline-element-date {
     float: left;
-    padding: .8em 0;
+    padding: 0.4em 0;
     opacity: 1
 }
 
@@ -285,7 +285,9 @@
 .vertical-timeline-element--no-children .vertical-timeline-element-content-arrow {
     display: none
 }
-
+.vertical-timeline .vertical-timeline--animate .vertical-timeline--two-columns{
+    align-items: center;
+}
 @media only screen and (min-width:768px) {
     .vertical-timeline-element-content h2 {
         font-size: 20px;
@@ -306,7 +308,7 @@
 @media only screen and (min-width:1170px) {
     .vertical-timeline--two-columns .vertical-timeline-element-content {
         margin-left: 0;
-        padding: 1.5em;
+        padding: 0.7em;
         width: 44%
     }
 

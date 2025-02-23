@@ -16,7 +16,10 @@ const registerSchema = z.object({
     required_error: 'Hostel selection is required',
   }),
   block: z.string().optional(),
-  roomNumber: z.string().optional(),
+  roomNumber: z
+    .string()
+    .regex(/^\d{1,4}[A-Za-z]?$/, 'Invalid room number format') // Allows up to 4 digits + 1 optional letter
+    .optional(),
 });
 
 export async function POST(req: NextRequest) {

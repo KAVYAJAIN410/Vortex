@@ -141,29 +141,24 @@ export default function Page() {
     };
   
     return (
-      <div className="bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-5 text-black pt-[12vh]">
+      <div className="bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-5 text-black pt-[12vh] bg-neutral-900">
         {loading && <LoadingScreen />}
 
         {/* Home Button */}
-        <button
-          onClick={() => router.push("/")}
-          className="absolute top-4 left-4 bg-transparent text-white font-bold text-lg hover:underline"
-        >
-          Home
-        </button>
+      
         
-        <h1 className="text-4xl sm:text-5xl font-extrabold mb-8 text-center drop-shadow-lg text-white">Team: {teamName}</h1>
+        <h1 className="text-4xl sm:text-5xl font-extrabold mb-8 text-center drop-shadow-lg text-white font-[GreaterTheory]">Team: {teamName}</h1>
   
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-screen-lg px-4">
           {teamMembers.map((member, index) => (
             <div
               key={member.id}
-              className="bg-[#141B2B] opacity-85 rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-between"
+              className="bg-white text-black opacity-85 rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-between"
             >
-              <h2 className="text-2xl text-white font-bold mb-2">{member?.name}</h2>
-              <p className="text-xl text-white font-bold mb-2">{index === 0 ? "Leader" : "Member"}</p>
-              <p className="text-sm text-white mb-1">Registration Number: {member?.regNo}</p>
-              <p className="text-sm text-white">Mobile Number: {member?.mobNo}</p>
+              <h2 className="text-2xl font-bold mb-2">{member?.name}</h2>
+              <p className="text-xlfont-bold mb-2">{index === 0 ? "Leader" : "Member"}</p>
+              <p className="text-sm mb-1">Registration Number: {member?.regNo}</p>
+              <p className="text-sm">Mobile Number: {member?.mobNo}</p>
             </div>
           ))}
         </div>
@@ -172,7 +167,7 @@ export default function Page() {
         <div className="mt-8">
           <button
             onClick={handleShowModal}
-            className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-all"
+            className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
           >
             Leave Team
           </button>

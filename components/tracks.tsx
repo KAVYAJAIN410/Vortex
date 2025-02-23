@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-
+import React, { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -53,6 +52,8 @@ const trackDetails = [
 const Tracks = () => {
   const containerRef = React.useRef(null);
   const isInView = useInView(containerRef, { once: true });
+  const [selectedTrack, setSelectedTrack] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Animation variants for the cards
   const cardVariants = {
@@ -60,9 +61,18 @@ const Tracks = () => {
     visible: { opacity: 1, y: 0 },
   };
 
+  const handleTrackClick = (track) => {
+    setSelectedTrack(track);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedTrack(null);
+  };
+
   return (
-    <div className="flex flex-col justify-center" id="tracks" >
-      
+    <div className="flex flex-col justify-center" id="tracks">
       <div
         className="min-h-screen bg-[#FF6B00] flex flex-col justify-center items-center p-10 relative"
         ref={containerRef}
@@ -79,15 +89,12 @@ const Tracks = () => {
         </div>
 
         {/* Title */}
-        <h1
-          className="font-vcr text-5xl md:text-8xl text-black mb-10 relative z-10 font-[BrigendsExpanded]"
-         
-        >
+        <h1 className="font-vcr text-5xl md:text-8xl text-black mb-10 relative z-10 font-[BrigendsExpanded]">
           TRACKS
         </h1>
 
-        {/* Grid for Desktop, Carousel for Mobile */}
-        <div className="relative z-10 hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl">
+        {/* Grid for Desktop */}
+        <div className="relative z-10 hidden md:grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl">
           {trackDetails.map((track, index) => (
             <motion.div
               key={index}
@@ -96,68 +103,76 @@ const Tracks = () => {
               animate={isInView ? "visible" : "hidden"}
               transition={{ duration: 1, delay: index * 0.2 }}
             >
-              <div className="bg-black rounded-xl w-72 h-72">
-                {/* Header Bar */}
-                <div className="flex justify-center">
-                <div className="font-[GreaterTheory] text-left p-2 flex justify-center items-center h-fit w-fit">
-                  <span className="font-bold text-md">{track.name}</span>
-                  
+              <div className="bg-black rounded-xl p-6 h-full flex flex-col justify-between">
+                {/* Header */}
+                <div className="font-[GreaterTheory] text-left">
+                  <span className="font-bold text-xl text-white">
+                    {track.name}
+                  </span>
                 </div>
-                </div>
-                <div className="p-4">
-                  {/* Content */}
-                  <div className="p-2 text-xs leading-5 text-gray-300 font-[PoppinsRegular]">
+
+                {/* Content */}
+                <div className="mt-4 flex-1">
+                  <p className="text-sm leading-6 text-gray-300 font-[PoppinsRegular]">
                     {track.content}
-                  </div>
-                  {/* Footer */}
-                  
+                  </p>
+                </div>
+
+                {/* Footer (if needed) */}
+                <div className="mt-4">
+                  {/* Add any footer content here */}
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Swiper Carousel for Mobile */}
+        {/* List for Mobile */}
         <div className="relative z-10 w-full md:hidden">
-          <Swiper
-            modules={[Pagination]}
-            pagination={{ clickable: true }}
-            spaceBetween={15}
-            slidesPerView={1}
-            className="w-full max-w-sm"
-          >
+          <div className="flex flex-col space-y-4">
             {trackDetails.map((track, index) => (
-              <SwiperSlide key={index}>
-                <motion.div
-                  variants={cardVariants}
-                  initial="hidden"
-                  animate={isInView ? "visible" : "hidden"}
-                  transition={{ duration: 0.5, delay: index * 0.2 }}
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+              >
+                <div
+                  className="bg-black rounded-xl p-4 cursor-pointer"
+                  onClick={() => handleTrackClick(track)}
                 >
-                  <div className="bg-black rounded-xl w-72 h-72 mx-auto">
-                    {/* Header Bar */}
-                    <div className="flex justify-center">
-                <div className="font-[GreaterTheory] text-left p-2 flex justify-center items-center h-fit w-fit">
-                  <span className="font-bold text-md">{track.name}</span>
-                  
-                </div>
-                     
-                    </div>
-                    <div className="p-4">
-                      {/* Content */}
-                      <div className="p-2 text-xs leading-5 text-gray-300 font-[PoppinsRegular]">
-                        {track.content}
-                      </div>
-                      {/* Footer */}
-                      
-                    </div>
+                  <div className="font-[GreaterTheory] text-left">
+                    <span className="font-bold text-md text-white">
+                      {track.name}
+                    </span>
                   </div>
-                </motion.div>
-              </SwiperSlide>
+                </div>
+              </motion.div>
             ))}
-          </Swiper>
+          </div>
         </div>
       </div>
+
+      {/* Modal for Track Description */}
+      {isModalOpen && selectedTrack && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
+          <div className="bg-neutral-900 rounded-xl p-6 max-w-sm w-full relative">
+            <button
+              className="absolute top-2 right-2 text-white"
+              onClick={closeModal}
+            >
+              <IoMdClose size={24} />
+            </button>
+            <h2 className="font-[GreaterTheory] text-xl font-bold mb-4 text-white">
+              {selectedTrack.name}
+            </h2>
+            <p className="text-sm leading-6 text-gray-300 font-[PoppinsRegular]">
+              {selectedTrack.content}
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

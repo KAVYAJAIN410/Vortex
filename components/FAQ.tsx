@@ -57,6 +57,7 @@ const FaqContent = () => {
                   {faq.q}
                   <span className="text-2xl ">{visibleFaq === faq.id ? "x" : "+"}</span>
                 </button>
+                <hr></hr>
                 <div
                   className={`transition-all duration-300 ease-in-out overflow-hidden ${
                     visibleFaq === faq.id ? "opacity-100 p-6" : "max-h-0 opacity-0"

@@ -123,20 +123,29 @@ const [user,setUser]=useState({});
 
   const validate = (): Errors => {
     const newErrors: Errors = {};
+    
     if (!formData.name) newErrors.name = "Name is required";
+  
     if (!formData.regNo) newErrors.regNo = "Registration number is required";
-    else if (!/^\d{2}[A-Za-z]{3}\d{4}$/.test(formData.regNo.trim()))
+    else if (!/^\d{2}[A-Z]{3}\d{4}$/.test(formData.regNo.trim()))
       newErrors.regNo = "Invalid registration number format";
-    else if (/^\d{2}[a-z]{3}\d{4}$/.test(formData.regNo.trim()))
-      newErrors.regNo = "Enter Registration Number in capital letters";
+    
     if (!formData.number) newErrors.number = "Phone number is required";
     else if (!/^\d{10}$/.test(formData.number.trim()))
       newErrors.number = "Invalid phone number format";
+  
     if (!formData.hostel) newErrors.hostel = "Hostel selection is required";
-    if (formData.hostel !== "ds" && !formData.block)
-      newErrors.block = "Block is required for hostel residents";
-    if (formData.hostel !== "ds" && !formData.roomNumber)
-      newErrors.roomNumber = "Room number is required for hostel residents";
+  
+    if (formData.hostel !== "ds") {
+      if (!formData.block) newErrors.block = "Block is required for hostel residents";
+  
+      if (!formData.roomNumber) {
+        newErrors.roomNumber = "Room number is required for hostel residents";
+      } else if (!/^\d{1,4}[A-Za-z]?$/.test(formData.roomNumber.trim())) {
+        newErrors.roomNumber = "Invalid room number format (Max 4 digits + 1 optional letter)";
+      }
+    }
+  
     return newErrors;
   };
 

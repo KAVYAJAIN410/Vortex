@@ -15,15 +15,15 @@ const Marq = () => {
         <div className="flex gap-10 bg-white text-black justify-around font-bold text-lg md:text-3xl leading-normal">
           &nbsp;
           <Star></Star>
-          &nbsp;RoboVitics&nbsp;
+          &nbsp;Vortex-360&nbsp;
           <Star></Star>
-          &nbsp;RoboVitics&nbsp;
+          &nbsp;Vortex-360&nbsp;
           <Star></Star>
-          &nbsp;RoboVitics&nbsp;
+          &nbsp;Vortex-360&nbsp;
           <Star></Star>
-          &nbsp;RoboVitics&nbsp;
+          &nbsp;Vortex-360&nbsp;
           <Star></Star>
-          &nbsp;RoboVitics&nbsp;
+          &nbsp;Vortex-360&nbsp;
         </div>
       </Marquee>
     </div>
