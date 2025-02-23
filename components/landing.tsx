@@ -419,7 +419,7 @@ export default function Hero() {
               }`}
               style={{ objectPosition: "center" }} // Ensures background centers properly
             />
-            <CountdownTimer targetDate="2025-02-26T00:00:00" />
+            <CountdownTimer targetDate="2025-02-27T00:00:00" />
             <div className="absolute inset-0 flex items-center overflow-hidden whitespace-nowrap">
               <div className="flex w-max animate-marquee">
                 {[...Array(2)].map((_, i) => (
