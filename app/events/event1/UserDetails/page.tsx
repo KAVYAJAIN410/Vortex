@@ -130,10 +130,11 @@ const [user,setUser]=useState({});
     else if (!/^\d{2}[A-Z]{3}\d{4}$/.test(formData.regNo.trim()))
       newErrors.regNo = "Invalid registration number format";
     
-    if (!formData.number) newErrors.number = "Phone number is required";
-    else if (!/^\d{10}$/.test(formData.number.trim()))
+    if (!formData.number) {
+      newErrors.number = "Phone number is required";
+    } else if (!/^(\+91)?\d{10}$/.test(formData.number.trim())) {
       newErrors.number = "Invalid phone number format";
-  
+    }
     if (!formData.hostel) newErrors.hostel = "Hostel selection is required";
   
     if (formData.hostel !== "ds") {

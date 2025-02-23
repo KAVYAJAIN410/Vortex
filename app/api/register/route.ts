@@ -11,7 +11,8 @@ const registerSchema = z.object({
     .regex(/^\d{2}[A-Za-z]{3}\d{4}$/, 'Invalid registration number format'),
   number: z
     .string()
-    .regex(/^\d{10}$/, 'Invalid phone number format'),
+    .regex(/^(\+91)?\d{10}$/, 'Invalid phone number format'),
+
   hostel: z.enum(['lh', 'mh', 'ds'], {
     required_error: 'Hostel selection is required',
   }),
