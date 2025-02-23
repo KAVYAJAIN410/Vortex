@@ -249,8 +249,8 @@ export default function Page() {
             </div>
           </section>
           <div className="flex justify-center">
-         <div className="flex justify-center gap-2 absolute bottom-6"> 
-          {teamMembers.length<4 && <button
+         <div className="flex justify-center gap-2 absolute bottom-6 p-4"> 
+          {teamMembers.length<5 && <button
         className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
                 onClick={()=>{
                   setModalType("teamCode");
