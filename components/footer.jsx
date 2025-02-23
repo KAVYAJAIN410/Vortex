@@ -25,8 +25,8 @@ export const Footer = () => {
         />
 
         {/* Community Section - Spread Horizontally on Laptop View */}
-        <div className="flex flex-col md:flex-row gap-10 z-50 w-full md:justify-center">
-          <div className="uppercase flex flex-col md:flex-row md:items-center md:gap-10">
+        <div className="flex flex-col md:flex-row gap-10 z-50 w-full justify-center">
+          <div className="uppercase flex flex-col md:flex-row items-center md:gap-10">
             <p className="text-xl font-semibold m-0">Community</p>
             <div className="flex flex-col md:flex-row md:items-center md:gap-10">
               <Link
@@ -35,7 +35,7 @@ export const Footer = () => {
                 className="flex gap-2 items-center text-2xl"
               >
                 <RiInstagramFill />
-                <p className="text-md">Instagram</p>
+                <p className="text-sm sm:text-md">Instagram</p>
               </Link>
               <Link
                 href={"https://twitter.com/robovitics"}
@@ -43,7 +43,7 @@ export const Footer = () => {
                 className="flex gap-2 items-center text-2xl"
               >
                 <FaSquareXTwitter />
-                <p className="text-md">Twitter</p>
+                <p className="text-sm  sm:text-md">Twitter</p>
               </Link>
               <Link
                 href={"https://www.linkedin.com/company/robovitics?originalSubdomain=in"}
@@ -51,7 +51,7 @@ export const Footer = () => {
                 className="flex gap-2 items-center text-2xl"
               >
                 <FaLinkedin />
-                <p className="text-md">Linkedin</p>
+                <p className="text-sm  sm:text-md">Linkedin</p>
               </Link>
               <Link
                 href={"https://www.facebook.com/robovitics/"}
@@ -59,7 +59,7 @@ export const Footer = () => {
                 className="flex gap-2 items-center text-2xl"
               >
                 <FaSquareFacebook />
-                <p className="text-md">Facebook</p>
+                <p className="text-sm  sm:text-md">Facebook</p>
               </Link>
             </div>
           </div>
@@ -80,7 +80,9 @@ export const Footer = () => {
                 <span>
                   <BiSolidPhoneCall />
                 </span>
+                <span className="text-lg">
                 +91 1234567890
+                </span>
               </Link>
               <Link
                 className="flex items-center gap-2 justify-center"
@@ -89,7 +91,9 @@ export const Footer = () => {
                 <span>
                   <IoMdMail />
                 </span>
+                <span className="text-lg">
                 RoboVITics@vit.ac.in
+                </span>
               </Link>
             </div>
           </div>

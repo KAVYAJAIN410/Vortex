@@ -44,8 +44,7 @@ const Timeline = () => {
                   background: "#FF6B00",
                   scale: 0.6, // Bigger circle for dates
                   color: "#FF6B00",
-                  width: "60px", // Increase size
-                  height: "60px", // Increase size
+               
                 }}
               >
                 <div className="ml-16 sm:m-0 font-poppins text-white">
