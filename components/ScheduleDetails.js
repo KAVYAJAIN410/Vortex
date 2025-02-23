@@ -48,7 +48,7 @@ const scheduleDetails = [
       {
         id: 5,
         eventName: "Round 1 Review",
-        description: "First round of project reviews by judges.",
+        description: "First round of project reviews by the panel(No elimination).",
         image: image,
         time: "12:30 AM",
         whatsapp: "",
@@ -57,7 +57,7 @@ const scheduleDetails = [
       {
         id: 6,
         eventName: "Round 2 Review",
-        description: "Second round of project reviews by judges.",
+        description: "Second round of project reviews by the panel.",
         image: image,
         time: "4:00 PM",
         whatsapp: "",

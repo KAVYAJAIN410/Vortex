@@ -8,7 +8,7 @@ import { IoMdMail } from "react-icons/io";
 import Image from "next/image";
 import Marq from "./Marq";
 import robo from "@/assets/robo.png";
-import bg from "@/assets/footer.png";
+import bg from "@/assets/Noise & Texture.png"
 
 export const Footer = () => {
   return (
@@ -75,13 +75,13 @@ export const Footer = () => {
             <div className="flex flex-col text-sm gap-1">
               <Link
                 className="flex items-center gap-2 justify-center"
-                href={"tel:+916306311799"}
+                href={"tel:+919431145348"}
               >
                 <span>
                   <BiSolidPhoneCall />
                 </span>
                 <span className="text-lg">
-                +91 1234567890
+                9431145348
                 </span>
               </Link>
               <Link
