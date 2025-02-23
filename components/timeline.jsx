@@ -3,7 +3,9 @@ import VerticalTimelineElement from "./verticalTimelineElement";
 import "./style.css";
 import scheduleDetails from "./ScheduleDetails.js";
 import { useState } from "react";
+
 import { useSession } from "next-auth/react";
+
 
 const Timeline = () => {
   const [loader, setLoader] = useState(false);
@@ -122,6 +124,7 @@ const Timeline = () => {
           ))}
         </VerticalTimeline>
       </div>
+     
     </section>
   );
 };
