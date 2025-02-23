@@ -85,9 +85,10 @@ const RegisterButton: React.FC = () => {
     <div className="text-2xl z-[1000]" >
       {status !== "authenticated" ? (
         <button
-        className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
+        className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded] tracking-widest"
         onClick={handleClick}
           disabled={loading}
+          style={{letterSpacing:"4px"}}
         >
           
           {loading ? <LoadingIcons.Oval /> : "Sign In"}
@@ -97,14 +98,16 @@ const RegisterButton: React.FC = () => {
         className="hover:text- hover:bg-transparent hover:shadow-sm  text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
         onClick={handleClick}
           disabled={loading}
+          style={{letterSpacing:"4px"}}
         >
           {loading ? <LoadingIcons.Oval /> : "Dashboard"}
         </button>
       ) : (
         <button
-         className="hover:text- hover:bg-transparent hover:shadow-sm text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
+         className="hover:text- hover:bg-transparent hover:shadow-sm text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]  tracking-wider"
           onClick={handleClick}
           disabled={loading}
+          style={{letterSpacing:"4px"}}
          
         >
           {loading ? <LoadingIcons.Oval /> : "Register Now"}

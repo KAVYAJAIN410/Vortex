@@ -256,6 +256,7 @@ export default function Page() {
                   setModalType("teamCode");
       setShowModal(true);
                 }}
+                style={{letterSpacing:"4px"}}
               >
                 {isLoading ? (
                   <span className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"></span>
@@ -269,6 +270,7 @@ export default function Page() {
             <button
              className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
               onClick={() => handleShowModal(null, "deleteTeam")}
+              style={{letterSpacing:"4px"}}
             >
               Delete Team
             </button>

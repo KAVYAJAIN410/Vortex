@@ -67,11 +67,5 @@ body {
   
 }
 
-.glass-nav a {
-  color: white;
-  text-decoration: none;
-}
 
-.glass-nav a:hover {
-  color: #ccc; /* Light gray on hover */
-}
+
