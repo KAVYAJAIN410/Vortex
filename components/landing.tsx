@@ -51,11 +51,15 @@ const walls = [
 ];
 
 const imageSources = [
-  "https://res.cloudinary.com/robovitics/image/upload/v1660501674/Robovitics%20Site/Memories/robowars_memory_zmlqtq.jpg",
-  "https://robovitics.in/images/carousel-6.jpg",
-  "https://res.cloudinary.com/robovitics/image/upload/v1660501678/Robovitics%20Site/Memories/robowars_inog_memory_zrm2qw.jpg",
-  "https://res.cloudinary.com/robovitics/image/upload/v1660501666/Robovitics%20Site/Memories/juniorsmeet_memory_nqajgd.jpg",
-];
+    "https://res.cloudinary.com/dfrb2fapb/image/upload/v1740376484/IMG-20250224-WA0004_yibuwz.jpg",
+    "https://res.cloudinary.com/dfrb2fapb/image/upload/v1740376474/IMG-20250224-WA0005_ytioe0.jpg",
+    "https://res.cloudinary.com/dfrb2fapb/image/upload/v1740376469/IMG-20250224-WA0007_h8i9qh.jpg",
+    "https://res.cloudinary.com/dfrb2fapb/image/upload/v1740376463/IMG-20250224-WA0009_krffk3.jpg",
+    "https://robovitics.in/images/carousel-6.jpg"
+ 
+  // 
+  ]
+  
 const imagePositions = [1, 3, 5, 0, 4, 2];
 
 export default function Hero() {
@@ -326,12 +330,12 @@ export default function Hero() {
                   }}
                 >
                   {gridSquares.map((_, j) => {
-                    const column = j % 5;
-                    const row = Math.floor(j / 5);
+                    const column = j % 3;
+                    const row = Math.floor(j / 3);
                     return (
                       <div
                         key={`cell-${j}`}
-                        className="bg-neutral-800 border-purple-300"
+                        className="bg-neutral-800 border-purple-300 opacity-75"
                         style={{
                           border: "2px solid #FF6B00",
                           backfaceVisibility: "hidden",
@@ -342,7 +346,7 @@ export default function Hero() {
                           <img
                             src={imageSources[column % imageSources.length]}
                             alt={`Image ${column}`}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover z-[1000]"
                             onError={(e) => {
                               console.error(
                                 "Image failed to load:",
@@ -351,6 +355,9 @@ export default function Hero() {
                             }}
                           />
                         )}
+                        <Image src={bg} alt="" className="cover w-full h-full opacity-100 "></Image>
+                        
+
                       </div>
                     );
                   })}
@@ -452,7 +459,7 @@ export default function Hero() {
       <Image
         src={bg}
         alt="background"
-        className={`w-full h-full object-cover absolute top-0 left-0`}
+        className={`w-full h-full object-cover absolute top-0 left-0 ${isTunnelComplete?"visible":"hidden"} `}
         style={{ objectPosition: "center" }} // Ensures background centers properly
       />
     </div>

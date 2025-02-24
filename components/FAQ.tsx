@@ -8,10 +8,10 @@ const FaqContent = () => {
               RoboVITics, powered by AutoDesk's Fusion 360. It's an immersive
               experience for participants to explore 3D modeling, rendering, and
               manufacturing.` },
-    { id: 2, q: "When and where is Vortex360 taking place?", ans: `Vortex360 is scheduled for February 27 to March 1st at Anna Auditorium,
+    { id: 2, q: "When and where is Vortex360 taking place?", ans: `Vortex360 is scheduled for February 27th to March 1st at Anna Auditorium,
               offering a dynamic environment for hands-on exploration of
               innovative design concepts.` },
-    { id: 3, q: " Who can participate in Vortex360?", ans: `Vortex360 is open to enthusiasts, students, and professionals
+    { id: 3, q: " Who can participate in Vortex360?", ans: `Vortex360 is open to enthusiasts, students
               passionate about mechanical design. Whether you're a beginner or
               an experienced designer, everyone is welcome!` },
     { id: 4, q: " What tools will participants use during the event?", ans: `Participants will utilize Fusion 360 tools for 3D modeling,
