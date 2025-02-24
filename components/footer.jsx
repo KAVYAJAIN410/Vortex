@@ -80,8 +80,8 @@ export const Footer = () => {
                 <span>
                   <BiSolidPhoneCall />
                 </span>
-                <span className="text-lg">
-                9431145348
+                <span className="text-lg w-fit">
+               Rounit Kumar (9431145348)
                 </span>
               </Link>
               <Link
