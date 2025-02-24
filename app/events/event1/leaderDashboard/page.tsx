@@ -143,7 +143,6 @@ export default function Page() {
   };
 
   const deleteTeam = async () => {
-    setIsLoading(true);
     try {
       setIsLoading(true);
       const response = await fetch("/api/event1/deleteTeam", {
@@ -160,7 +159,11 @@ export default function Page() {
         toast.success("Team deleted successfully");
         router.push("/");
       } else {
-        toast.error("Failed to delete the team.");
+         setIsLoading(false);
+         const errorData = await response.json(); // Parse JSON response
+         const errorMessage = errorData?.message || "Failed to delete the team.";
+         toast.error(errorMessage);
+       
       }
     } catch {
       toast.error("An error occurred while deleting the team.");
@@ -249,7 +252,7 @@ export default function Page() {
             </div>
           </section>
           <div className="flex justify-center">
-         <div className="flex justify-center gap-2 absolute bottom-6 p-4"> 
+         <div className="flex justify-center gap-2"> 
           {teamMembers.length<5 && <button
         className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
                 onClick={()=>{

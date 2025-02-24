@@ -73,7 +73,7 @@ export default function Page() {
         const result = await response.json();
         toast.success(result.message || "Team joined successfully!");
         setTeamCode("");
-        router.push("/");
+        router.push("/memberDashboard");
       }
     } catch {
       toast.error("Network error occurred.");

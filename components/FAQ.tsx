@@ -4,23 +4,23 @@ import { useState } from "react";
 
 const FaqContent = () => {
   const faqs = [
-    { id: 1, q: " What is Vortex360?", ans: `Vortex360 is a three-day Mechanical Design Hackathon hosted by
+    { id: 1, q: " What is Vortex 360?", ans: `Vortex 360 is a three-day Mechanical Design Hackathon hosted by
               RoboVITics, powered by AutoDesk's Fusion 360. It's an immersive
               experience for participants to explore 3D modeling, rendering, and
               manufacturing.` },
-    { id: 2, q: "When and where is Vortex360 taking place?", ans: `Vortex360 is scheduled for February 27th to March 1st at Anna Auditorium,
+    { id: 2, q: "When and where is Vortex 360 taking place?", ans: `Vortex 360 is scheduled for February 27th to March 1st at Anna Auditorium,
               offering a dynamic environment for hands-on exploration of
               innovative design concepts.` },
-    { id: 3, q: " Who can participate in Vortex360?", ans: `Vortex360 is open to enthusiasts, students
+    { id: 3, q: " Who can participate in Vortex 360?", ans: `vortex 360 is open to enthusiasts, students
               passionate about mechanical design. Whether you're a beginner or
               an experienced designer, everyone is welcome!` },
     { id: 4, q: " What tools will participants use during the event?", ans: `Participants will utilize Fusion 360 tools for 3D modeling,
               rendering, and manufacturing. It's a chance to harness the power
               of cutting-edge technology in the design process.` },
-    { id: 5, q: " Is there a registration fee for Vortex360?", ans: `No, participation in Vortex360 is free of charge. We want to
+    { id: 5, q: " Is there a registration fee for vortex 360?", ans: `No, participation in vortex 360 is free of charge. We want to
               encourage as many individuals as possible to join this exciting
               journey of creativity and innovation.` },
-    { id: 6, q: "Can I participate remotely in Vortex360??", ans: ` Vortex360 is an offline event at Anna Auditorium. Unfortunately,
+    { id: 6, q: "Can I participate remotely in vortex 360??", ans: ` vortex 360 is an offline event at Anna Auditorium. Unfortunately,
               remote participation is not available. We encourage you to join us
               in person for an immersive experience.` },
    
