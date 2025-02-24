@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" sizes="512x512" href="https://res.cloudinary.com/dfrb2fapb/image/upload/v1740378202/IMG-20250212-WA0018-removebg-preview_jisenl.png"  />
       </head>
        <AuthProvider>
       <body
