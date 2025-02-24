@@ -459,7 +459,7 @@ export default function Hero() {
       <Image
         src={bg}
         alt="background"
-        className={`w-full h-full object-cover absolute top-0 left-0 ${isTunnelComplete?"visible":"hidden"} `}
+        className={`w-full h-full object-cover absolute top-0 left-0 ${isTunnelComplete||ideateCompleted?"visible":"hidden"} `}
         style={{ objectPosition: "center" }} // Ensures background centers properly
       />
     </div>
