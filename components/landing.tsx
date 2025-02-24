@@ -283,7 +283,7 @@ export default function Hero() {
         style={{ height: "100vh", overflow: "hidden" }}
       >
         <div
-          className={`w-full h-screen opacity-75 ${isSmallScreen?"hidden":"visible"}`}
+          className={`w-full h-screen opacity-75 ${isSmallScreen||isTunnelComplete?"hidden":"visible"} `}
           style={{
             perspective: "1500px",
             overflow: "hidden",
