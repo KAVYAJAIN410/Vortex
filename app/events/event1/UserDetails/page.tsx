@@ -205,13 +205,13 @@ const [user,setUser]=useState({});
   return (
     <div className="bg-cover bg-center bg-no-repeat bg-neutral-900">
       {loading && (
-        <div className="flex justify-center items-center fixed inset-0 bg-black bg-opacity-50 z-50">
+        <div className="flex justify-center items-center fixed inset-0 bg-black bg-opacity-50 z-50 ">
           <div className="text-white text-2xl">Loading...</div>
         </div>
       )}
-      <div className="flex justify-center items-center lg:grid-cols-3 min-h-screen gap-4 p-4 md:p-8 lg:p-10">
-        <div className="col-span-1 sm:col-span-2 lg:col-span-2 flex items-center justify-center p-4 lg:p-8 bg-cover bg-center sm:border border-gray-600 rounded-3xl overflow-hidden">
-          <div className="w-full max-w-md lg:max-w-lg">
+      <div className="flex justify-center items-center lg:grid-cols-3 min-h-screen gap-4 p-4 md:p-8 lg:p-10 ">
+        <div className="col-span-1 sm:col-span-2 lg:col-span-2 flex items-center justify-center p-4 lg:p-8 bg-cover bg-center sm:border border-gray-600 rounded-3xl overflow-hidden ">
+          <div className="w-full max-w-md lg:max-w-lg mt-6">
             <form
               onSubmit={handleSubmit}
               className="flex flex-col gap-10 bg-transparent p-2 rounded-lg shadow-none min-w-[full] min-h-[full] text-3xl"
@@ -237,6 +237,7 @@ const [user,setUser]=useState({});
                   onChange={handleChange}
                   className="border rounded-md text-2xl text-black border-gray-300 focus:ring-blue-200 focus:outline-none focus:ring-2 p-2"
                 />
+                <p className="text-sm">Enter Registration number in capital</p>
               </div>
               <div className="flex flex-col gap-2">
                 <input
