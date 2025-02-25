@@ -108,6 +108,7 @@ const Tracks = () => {
                 <div className="font-[GreaterTheory] text-left">
                   <span className="font-bold text-xl text-white">
                     {track.name}
+                    <hr></hr>
                   </span>
                 </div>
 
@@ -156,7 +157,7 @@ const Tracks = () => {
 
       {/* Modal for Track Description */}
       {isModalOpen && selectedTrack && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center  p-4 z-[1001]">
           <div className="bg-neutral-900 rounded-xl p-6 max-w-sm w-full relative">
             <button
               className="absolute top-2 right-2 text-white"
