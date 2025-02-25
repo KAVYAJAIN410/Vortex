@@ -18,9 +18,12 @@ const registerSchema = z.object({
   }),
   block: z.string().optional(),
   roomNumber: z
-    .string()
-    .regex(/^\d{1,4}[A-Za-z]?$/, 'Invalid room number format') // Allows up to 4 digits + 1 optional letter
-    .optional(),
+  .string()
+  .optional()
+  .refine((val) => !val || /^\d{1,4}[A-Za-z]?$/.test(val), {
+    message: 'Invalid room number format',
+  })
+    
 });
 
 export async function POST(req: NextRequest) {
