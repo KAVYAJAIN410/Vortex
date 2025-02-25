@@ -20,10 +20,6 @@ const registerSchema = z.object({
   roomNumber: z
   .string()
   .optional()
-  .refine((val) => !val || /^\d{1,4}[A-Za-z]?$/.test(val), {
-    message: 'Invalid room number format',
-  })
-    
 });
 
 export async function POST(req: NextRequest) {

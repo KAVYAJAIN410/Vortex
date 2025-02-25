@@ -142,9 +142,7 @@ const [user,setUser]=useState({});
   
       if (!formData.roomNumber) {
         newErrors.roomNumber = "Room number is required for hostel residents";
-      } else if (!/^\d{1,4}[A-Za-z]?$/.test(formData.roomNumber.trim())) {
-        newErrors.roomNumber = "Invalid room number format (Max 4 digits + 1 optional letter)";
-      }
+      } 
     }
   
     return newErrors;
