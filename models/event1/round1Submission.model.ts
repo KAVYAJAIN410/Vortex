@@ -3,9 +3,10 @@ import mongoose, { Document, ObjectId, Schema } from "mongoose";
 export interface TeamSubmssion extends Document {
   teamName: string;
   teamId: ObjectId;
-submission:string; 
+IdeaDescription:string; 
   createdAt?: Date,
-
+  IdeaTitle:string,
+  trackId:Number
 }
 
 const TeamSchema: Schema<TeamSubmssion> = new Schema(
@@ -17,12 +18,20 @@ const TeamSchema: Schema<TeamSubmssion> = new Schema(
     },
     teamId: {
         type: Schema.Types.ObjectId,
-        required: [true, "Team Id is required"],
+        required: [true, "TeamId is required"],
         unique: true,
     },
-    submission: {
+    trackId:{
+      type:Number,
+      required: [true, "track is required"],
+    },
+    IdeaTitle:{
       type: String,
-      required: [true, "Submission is required"],
+      required: [true, "title is required"],
+    },
+    IdeaDescription: {
+      type: String,
+      required: [true, "desxcription is required"],
     },
     createdAt: {
       type: Date,

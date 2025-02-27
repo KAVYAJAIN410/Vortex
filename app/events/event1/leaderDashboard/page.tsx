@@ -138,9 +138,7 @@ export default function Page() {
     }
     handleCloseModal();
   };
-  const startPoll = () => {
-    router.push("/polling");
-  };
+
 
   const deleteTeam = async () => {
     try {
@@ -278,6 +276,15 @@ export default function Page() {
               Delete Team
             </button>
           </section>
+          <button
+             className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
+              onClick={() => {
+                router.push("/submission")
+              }}
+              style={{letterSpacing:"4px"}}
+            >
+              Submit Idea
+            </button>
           </div>
           </div>
 
