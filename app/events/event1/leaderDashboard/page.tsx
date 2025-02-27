@@ -25,6 +25,7 @@ export default function Page() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [teamName, setTeamName] = useState<string | null>("Your Team");
   const [teamCode, setTeamCode] = useState<string>("12345ABC");
+  const [qualified, setQualified] = useState<string>("yet to declare");
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalMemberId, setModalMemberId] = useState<number | null>(null);
   const [modalType, setModalType] = useState<string>("");
@@ -82,12 +83,18 @@ export default function Page() {
         },
       });
       const userData = await userDataRes.json();
-
+      
       setTeamName(userData?.team?.teamName);
       setTeamCode(userData?.team?.teamCode);
       setTeamMembers(userData?.members);
       setAssigned(userData?.team?.choice);
       setPollActive(userData?.team?.poll_Active); // Set pollActive state
+      if(userData?.team?.isQualified==true){
+        setQualified("QUALIFIED")
+      }
+      else{
+        setQualified("ELIMINATED")
+      }
     } catch {
       toast.error("An error occurred while fetching data.");
     } finally {
@@ -201,6 +208,8 @@ export default function Page() {
             >
               {pollActive ? "Start Poll" : "Poll not active"}
             </button> */}
+
+            <h2 className="text-6xl">{qualified}</h2>
           </section>
 
           {/* Team Members Section */}
