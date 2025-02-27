@@ -285,8 +285,13 @@ export default function Page() {
               Delete Team
             </button>
           </section>
+         
+          </div>
+         
+          </div>
+          <center>
           <button
-             className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
+             className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded] w-fit"
               onClick={() => {
                 router.push("/Round1Idea")
               }}
@@ -294,10 +299,7 @@ export default function Page() {
             >
               Idea
             </button>
-          </div>
-          </div>
-
-
+            </center>
           {/* Modal */}
           {showModal && modalType !== "teamCode" &&  (
             <MyModal
