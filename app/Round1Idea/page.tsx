@@ -80,7 +80,7 @@ export default function ViewIdea() {
       <h2 className="text-3xl font-extrabold text-gray-900 text-center uppercase tracking-wide">
           {idea.IdeaTitle}
         </h2>
-        <p className="text-gray-600 text-lg mt-1">Track: {tracks[idea.trackId]}</p>
+        <p className="text-gray-600 text-lg mt-1">Track: {tracks[idea.trackId-1]}</p>
       </div>
 
       {/* Idea Description as a Document Body */}
