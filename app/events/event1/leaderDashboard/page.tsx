@@ -227,14 +227,14 @@ export default function Page() {
                       <h1 className="text-lg font-bold mb-1 font-[PoppinsRegular] ">
                         {member.event1TeamRole === 0 ? "LEADER" : "MEMBER"}
                       </h1>
-                      {member.event1TeamRole !== 0 && (
-                        <button
-                          className="mt-3 btn-secondary bg-red-700  px-4 py-2 rounded-md  hover:scale-105 transition-transform"
-                          onClick={() => handleShowModal(member._id, "remove")}
-                        >
-                          Remove
-                        </button>
-                      )}
+                      {/* {member.event1TeamRole !== 0 && (
+                        // <button
+                        //   className="mt-3 btn-secondary bg-red-700  px-4 py-2 rounded-md  hover:scale-105 transition-transform"
+                        //   onClick={() => handleShowModal(member._id, "remove")}
+                        // >
+                        //   Remove
+                        // </button>
+                      )} */}
                     </div>
                     <div className="absolute right-0 top-0 w-1/2 h-full">
                       <Image
@@ -268,22 +268,22 @@ export default function Page() {
 
           {/* Actions Section */}
           <section className="text-center">
-            <button
+            {/* <button
              className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
               onClick={() => handleShowModal(null, "deleteTeam")}
               style={{letterSpacing:"4px"}}
             >
               Delete Team
-            </button>
+            </button> */}
           </section>
           <button
              className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
               onClick={() => {
-                router.push("/submission")
+                router.push("/Round1Idea")
               }}
               style={{letterSpacing:"4px"}}
             >
-              Submit Idea
+              Idea
             </button>
           </div>
           </div>
