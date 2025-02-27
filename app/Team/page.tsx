@@ -135,7 +135,7 @@ export default function Page() {
           />
           <button
             type="submit"
-            disabled={loading}
+            disabled={true}
             className={`w-full p-2 rounded bg-gradient-to-r font-[BrigendsExpanded] bg-[#FF6B00]  text-white font-bold transition-transform ${
               loading ? "opacity-50 cursor-not-allowed" : "hover:scale-105"
             }`}
@@ -163,7 +163,7 @@ export default function Page() {
           />
           <button
             type="submit"
-            disabled={loading}
+            disabled={true}
             className={`w-full p-2 font-[BrigendsExpanded] rounded bg-gradient-to-r bg-[#FF6B00] text-white font-bold transition-transform ${
               loading ? "opacity-50 cursor-not-allowed" : "hover:scale-105"
             }`}

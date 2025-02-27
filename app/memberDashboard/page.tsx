@@ -164,7 +164,7 @@ export default function Page() {
         </div>
   
         {/* Leave Team button */}
-        <div className="mt-8">
+        {/* <div className="mt-8">
           <button
             onClick={handleShowModal}
             className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
@@ -172,7 +172,7 @@ export default function Page() {
           >
             Leave Team
           </button>
-        </div>
+        </div> */}
   
         {showModal && (
           <MyModal

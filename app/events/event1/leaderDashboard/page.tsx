@@ -236,14 +236,14 @@ export default function Page() {
                       <h1 className="text-lg font-bold mb-1 font-[PoppinsRegular] ">
                         {member.event1TeamRole === 0 ? "LEADER" : "MEMBER"}
                       </h1>
-                      {member.event1TeamRole !== 0 && (
+                      {/* {member.event1TeamRole !== 0 && (
                         <button
                           className="mt-3 btn-secondary bg-red-700  px-4 py-2 rounded-md  hover:scale-105 transition-transform"
                           onClick={() => handleShowModal(member._id, "remove")}
                         >
                           Remove
                         </button>
-                      )}
+                      )} */}
                     </div>
                     <div className="absolute right-0 top-0 w-1/2 h-full">
                       <Image
@@ -260,7 +260,7 @@ export default function Page() {
           </section>
           <div className="flex justify-center">
          <div className="flex justify-center gap-2"> 
-          {teamMembers.length<5 && <button
+          {/* {teamMembers.length<5 && <button
         className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
                 onClick={()=>{
                   setModalType("teamCode");
@@ -273,10 +273,10 @@ export default function Page() {
                 ) : (
                   "Add Member"
                 )}
-              </button>}
+              </button>} */}
 
           {/* Actions Section */}
-          <section className="text-center">
+          {/* <section className="text-center">
             <button
              className="hover:text- hover:bg-transparent hover:shadow-sm hover:shadow-white text-sm bg-[#FF6B00] text-white px-4 py-3 rounded-xl hover:scale-110 active:scale-95 font-[BrigendsExpanded]"
               onClick={() => handleShowModal(null, "deleteTeam")}
@@ -284,7 +284,7 @@ export default function Page() {
             >
               Delete Team
             </button>
-          </section>
+          </section> */}
          
           </div>
          
