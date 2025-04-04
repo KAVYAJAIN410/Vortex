@@ -1,5 +1,7 @@
 # 🌪️ Vortex 360 – Mechanical Design Hackathon Platform
 
+##https://vortex-weld.vercel.app/
+
 **Vortex 360** is a three-day Mechanical Design Hackathon hosted by **RoboVITics**, powered by **Autodesk Fusion 360**. This platform streamlines the event process — from registration to idea submission — making it easier for participants to create teams, submit ideas, and track their progress.
 
 ---
@@ -80,13 +82,8 @@ NEXTAUTH_SECRET=your_nextauth_secret
     npm run dev
 🌍 Deployment
 This project is deployed on Vercel. Just connect the GitHub repo to Vercel, add the environment variables, and you're good to go!
+https://vortex-weld.vercel.app/
 
-📸 Screenshots / Demo
-(Add screenshots or link to demo video here if available)
-
-🛠 Maintainers
-Made with 💙 by the RoboVITics Web Team
-GitHub
 
 📜 License
 MIT License © 2025 RoboVITics
