@@ -1,42 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌪️ Vortex 360 – Mechanical Design Hackathon Platform
 
-## Project Overview
+**Vortex 360** is a three-day Mechanical Design Hackathon hosted by **RoboVITics**, powered by **Autodesk Fusion 360**. This platform streamlines the event process — from registration to idea submission — making it easier for participants to create teams, submit ideas, and track their progress.
 
-This platform allows users to register, form teams (modify or delete teams), and submit their ideas for the hackathon **Vortex**. Vortex is an event organized by **RoboVITics**, the official robotics club of **VIT**, with **1500 registrations** expected.
+---
 
-## Getting Started
+## 🚀 Features
 
-First, run the development server:
+- 🔐 Google Authentication (NextAuth)
+- 👥 Create or Join Teams
+- 👑 Team Leader Controls: delete team, remove members
+- ✍️ Idea Submission Portal (once only)
+- 📊 Dashboards for both leaders and members
+- 🔔 Live updates on round qualifications
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🧭 User Journey
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Enter the website** – scroll up to navigate through the 3D tunnel experience.
+2. **Sign in** using Google authentication.
+3. **Submit hostel details** as part of initial setup.
+4. Choose to either:
+   - **Create a new team** (you become the team leader), or  
+   - **Join an existing team** using a team code.
+5. As **team leader**, access the dashboard to:
+   - View team code
+   - Remove members
+   - Delete the team
+6. As a **member**, you can:
+   - View the dashboard
+   - Leave the team
+7. Submit your idea (leader only):
+   - Select topic and track
+   - Write and submit the idea (editable only once)
+   - Revisit the idea from the dashboard anytime
+8. View updates on selection status from the **leader dashboard**.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🧰 Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Framework**: [Next.js](https://nextjs.org/)
+- **Language**: TypeScript
+- **Authentication**: NextAuth.js with Google OAuth
+- **Database**: MongoDB (via Mongoose)
+- **Deployment**: [Vercel](https://vercel.com/)
+- **Design**: Tailwind CSS
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ⚙️ Getting Started (Local Setup)
 
-## Deploy on Vercel
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/your-username/vortex360.git
+   cd vortex360
+2.Install dependencies
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    npm install
+3.Create a .env.local file and add the following variables:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+MONGODB_URI=your_mongodb_uri
+NEXTAUTH_URL=http://localhost:3000
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+REFRESH_TOKEN_SECRET=your_refresh_token_secret
+ACCESS_TOKEN_SECRET=your_access_token_secret
+NEXTAUTH_SECRET=your_nextauth_secret
+
+4.Run the app locally
+
+    npm run dev
+🌍 Deployment
+This project is deployed on Vercel. Just connect the GitHub repo to Vercel, add the environment variables, and you're good to go!
+
+📸 Screenshots / Demo
+(Add screenshots or link to demo video here if available)
+
+🛠 Maintainers
+Made with 💙 by the RoboVITics Web Team
+GitHub
+
+📜 License
+MIT License © 2025 RoboVITics
 
