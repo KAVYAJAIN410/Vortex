@@ -62,11 +62,17 @@
 
 
 MONGODB_URI=your_mongodb_uri
+
 NEXTAUTH_URL=http://localhost:3000
+
 GOOGLE_CLIENT_ID=your_google_client_id
+
 GOOGLE_CLIENT_SECRET=your_google_client_secret
+
 REFRESH_TOKEN_SECRET=your_refresh_token_secret
+
 ACCESS_TOKEN_SECRET=your_access_token_secret
+
 NEXTAUTH_SECRET=your_nextauth_secret
 
 4.Run the app locally
